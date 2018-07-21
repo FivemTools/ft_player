@@ -178,8 +178,8 @@ AddEventHandler('ft_players:SetLocalPlayer', function(data)
 end)
 
 -- Event is emited after client is 100% loaded games
-RegisterServerEvent("ft_players:OnClientReady")
-AddEventHandler('ft_players:OnClientReady', function()
+RegisterServerEvent("ft_libs:OnClientReady")
+AddEventHandler('ft_libs:OnClientReady', function()
 
   local source = source
   local player = {}
