@@ -5,9 +5,11 @@
 -- @Source: https://github.com/FivemTools/ft_players
 --
 
--- Constructor
-Player = {}
-Player.__index = Player
+--
+player = {}
+
+-- class table
+local Player = {}
 
 -- Save data in Database
 function Player:Save(...)
@@ -38,7 +40,7 @@ function Player:Save(...)
     end
 
     if number >= 1 then
-      exports.ft_database:QueryExecute("UPDATE " .. Database.players .. " SET " .. str_query .. " WHERE identifier = @identifier", secure)
+      exports.ft_database:QueryExecute("UPDATE players SET " .. str_query .. " WHERE identifier = @identifier", secure)
     else
       return false
     end
@@ -49,7 +51,7 @@ function Player:Save(...)
 
     if name ~= "id" and name ~= "identifier" then
       secure["@" .. name] = self[name]
-      exports.ft_database:QueryExecute("UPDATE " .. Database.players .. " SET " .. name .. " = @" .. name .. " WHERE identifier = @identifier", secure)
+      exports.ft_database:QueryExecute("UPDATE players SET " .. name .. " = @" .. name .. " WHERE identifier = @identifier", secure)
     else
       return false
     end
@@ -128,8 +130,17 @@ end
 function Player:Set(...)
 
   local data = self:SetLocal(...)
-  TriggerClientEvent("ft_players:SetLocalPlayer", self.source, data.update)
+  TriggerClientEvent("ft_player:SetLocalPlayer", self.source, data.update)
   self:Save(data.save) -- Save in Database
+
+end
+
+-- Create instance of player
+function player.new(data)
+
+    local self = data
+    setmetatable(self, { __index = Player })
+    return self
 
 end
 
@@ -137,15 +148,3 @@ end
 function AddPlayerMethod(name, method)
   Player[name] = method
 end
-
--- Event is emited after resource is loded
-AddEventHandler('ft_players:onResourceReady', function(resource)
-
-  -- Meta table for users
-  setmetatable(Player, {
-    __call = function(self, data)
-      return setmetatable(data, Player)
-    end
-  })
-
-end)

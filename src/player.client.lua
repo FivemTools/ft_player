@@ -77,7 +77,7 @@ Player.Set = function(...)
   local update = Player.SetLocal(...)
 
   if update ~= false and update ~= nil then
-    TriggerServerEvent('ft_players:SetPlayer', update)
+    TriggerServerEvent('ft_player:SetPlayer', update)
   end
 
 end
@@ -108,7 +108,7 @@ Player.Save = function(...)
 
   -- Send to server
   if update ~= nil then
-    TriggerServerEvent('ft_players:SetPlayer', update)
+    TriggerServerEvent('ft_player:SetPlayer', update)
   end
 
 end
@@ -175,8 +175,8 @@ Citizen.CreateThread(function()
 
     if NetworkIsSessionStarted() then
 
-      TriggerServerEvent('ft_players:OnClientReady')
-      TriggerEvent('ft_players:OnClientReady')
+      TriggerServerEvent('ft_player:OnClientReady')
+      TriggerEvent('ft_player:OnClientReady')
       break
 
     end
@@ -185,8 +185,8 @@ Citizen.CreateThread(function()
 end)
 
 -- Update Player
-RegisterNetEvent("ft_players:SetPlayer")
-AddEventHandler('ft_players:SetPlayer', function(data)
+RegisterNetEvent("ft_player:SetPlayer")
+AddEventHandler('ft_player:SetPlayer', function(data)
 
   local source = source
   if source == -1 then
@@ -198,8 +198,8 @@ AddEventHandler('ft_players:SetPlayer', function(data)
 end)
 
 -- Update Local Player
-RegisterNetEvent("ft_players:SetLocalPlayer")
-AddEventHandler('ft_players:SetLocalPlayer', function(data)
+RegisterNetEvent("ft_player:SetLocalPlayer")
+AddEventHandler('ft_player:SetLocalPlayer', function(data)
 
   local source = source
   local data = data
@@ -212,13 +212,15 @@ AddEventHandler('ft_players:SetLocalPlayer', function(data)
 end)
 
 -- Init client
-RegisterNetEvent("ft_players:InitPlayer")
-AddEventHandler('ft_players:InitPlayer', function(data)
+RegisterNetEvent("ft_player:InitPlayer")
+AddEventHandler('ft_player:InitPlayer', function(data)
 
   for name, value in pairs(data) do
     if type(value) ~= "table" then
       Player[name] = value
     end
   end
+  print("ft_player init")
+  exports.ft_libs:PrintTable(data)
 
 end)

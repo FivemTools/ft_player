@@ -56,25 +56,25 @@ end
 -- Get player by identifier
 function GetPlayerFromIdentifier(identifier)
 
-  local player = nil
-  local data = exports.ft_database:QueryFetchAll("SELECT * FROM " .. Database.players .. " WHERE identifier = @identifier", { ['@identifier'] = identifier })
+  local playerData = nil
+  local data = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE identifier = @identifier", { ['@identifier'] = identifier })
 
   if data[1] ~= nil then
-    player = Player(data[1])
+    playerData = player.new(data[1])
   end
 
-  return player
+  return playerData
 
 end
 
 -- Get player by id
 function GetPlayerFromId(id)
 
-  local player = nil
-  local data = exports.ft_database:QueryFetchAll("SELECT * FROM " .. Database.players .. " WHERE id = @id", { ['@id'] = id })
+  local playerData = nil
+  local data = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE id = @id", { ['@id'] = id })
 
   if data[1] ~= nil then
-    player = Player(data[1])
+    playerData = player.new(data[1])
   end
 
   return player
@@ -83,15 +83,15 @@ end
 
 -- Get player by serverId (source)
 function GetPlayerFromServerId(source)
-  local player = Players[source]
-  return player
+  local playerData = Players[source]
+  return playerData
 end
 
 -- Create player in database
 function CreatePlayer(identifier)
 
   local date = os.date("%Y-%m-%d %X")
-  local result = exports.ft_database:QueryExecute("INSERT INTO " .. Database.players .. " (`identifier`, `created_at`) VALUES (@identifier, @created_at)", { ['@identifier'] = identifier, ['@created_at'] = date } )
+  local result = exports.ft_database:QueryExecute("INSERT INTO players (`identifier`, `created_at`) VALUES (@identifier, @created_at)", { ['@identifier'] = identifier, ['@created_at'] = date } )
   return result
 
 end
@@ -111,11 +111,11 @@ function PlayerCall(method, source, ...)
 
   local args = {...}
   local count = #args
-  local player = Players[source]
+  local playerData = Players[source]
 
   if count >= 1 then
 
-    local callback = player[method]
+    local callback = playerData[method]
 
     if callback == nil then
       print("[Player] method : " ..method .. " no exist")
@@ -126,7 +126,7 @@ function PlayerCall(method, source, ...)
 
   elseif count == 0 then
 
-    local callback = player[method]
+    local callback = playerData[method]
 
     if callback == nil then
       print("[Player] method : " ..method .. " no exist")
@@ -146,12 +146,12 @@ end
 --
 
 -- CellPlayer
-RegisterServerEvent("ft_players:PlayerCall")
-AddEventHandler('ft_players:PlayerCall', PlayerCall)
+RegisterServerEvent("ft_player:PlayerCall")
+AddEventHandler('ft_player:PlayerCall', PlayerCall)
 
 -- Update Player
-RegisterServerEvent("ft_players:SetPlayer")
-AddEventHandler('ft_players:SetPlayer', function(data)
+RegisterServerEvent("ft_player:SetPlayer")
+AddEventHandler('ft_player:SetPlayer', function(data)
 
   local source = source
   if source == -1 then
@@ -164,8 +164,8 @@ AddEventHandler('ft_players:SetPlayer', function(data)
 end)
 
 -- Update local Player
-RegisterServerEvent("ft_players:SetLocalPlayer")
-AddEventHandler('ft_players:SetLocalPlayer', function(data)
+RegisterServerEvent("ft_player:SetLocalPlayer")
+AddEventHandler('ft_player:SetLocalPlayer', function(data)
 
   local source = source
   if source == -1 then
@@ -203,11 +203,11 @@ AddEventHandler('ft_libs:OnClientReady', function()
   end
 
   -- Send to client
-  TriggerClientEvent("ft_players:InitPlayer", source, player)
+  TriggerClientEvent("ft_player:InitPlayer", source, player)
 
   -- Send playerReadyToJoin event
-  TriggerClientEvent("ft_players:PlayerReadyToJoin", source)
-  TriggerEvent("ft_players:PlayerReadyToJoin", source)
+  TriggerClientEvent("ft_player:PlayerReadyToJoin", source)
+  TriggerEvent("ft_player:PlayerReadyToJoin", source)
 
 end)
 
