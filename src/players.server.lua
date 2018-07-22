@@ -113,8 +113,7 @@ end
 --
 function CreatePlayer(identifier)
 
-    local date = os.date("%Y-%m-%d %X")
-    local result = exports.ft_database:QueryExecute("INSERT IGNORE INTO players (`identifier`, `createdAt`) VALUES (@identifier, @createdAt)", { ['@identifier'] = identifier, ['@created_at'] = date } )
+    local result = exports.ft_database:QueryExecute("INSERT IGNORE INTO players (`identifier`, `createdAt`) VALUES (@identifier, NOW())", { ['@identifier'] = identifier } )
     return result
 
 end
