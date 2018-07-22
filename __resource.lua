@@ -44,5 +44,7 @@ server_exports {
     "GetPlayers",
     "PlayerCall",
     "AddPlayerCreateCallback",
+    "GetPlayerIsConnectedFormIdentifier",
+    "GetPlayerIsConnectedFormId",
 
 }
