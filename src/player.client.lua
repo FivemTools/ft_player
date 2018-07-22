@@ -107,13 +107,13 @@ end
 --
 function PlayerPos()
 
-    local player = GetPlayerPed(-1)
-    local pos = GetEntityCoords(player, true)
-    local heading = GetEntityHeading(player)
+    local playerPed = GetPlayerPed(-1)
+    local pedPos = GetEntityCoords(playerPed, true)
+    local heading = GetEntityHeading(playerPed)
     local data = {
-        pos_x = pos.x,
-        pos_y = pos.y,
-        pos_z = pos.z,
+        posX = pedPos.x,
+        posY = pedPos.y,
+        posZ = pedPos.z,
         heading = heading,
     }
     return data
@@ -133,7 +133,6 @@ end
 RegisterNetEvent("ft_player:SetPlayer")
 AddEventHandler('ft_player:SetPlayer', function(data)
 
-    local source = source
     if source == -1 then
         print("Server only")
     end
@@ -147,7 +146,6 @@ end)
 RegisterNetEvent("ft_player:SetLocalPlayer")
 AddEventHandler('ft_player:SetLocalPlayer', function(data)
 
-    local source = source
     local data = data
     if source == -1 then
         print("Server only")
