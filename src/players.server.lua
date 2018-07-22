@@ -14,10 +14,10 @@ PlayerCreateCallback = {}
 --
 function PlayerExist(source)
 
-  if type(Players[source]) == "nil" then
-    return false
-  end
-  return true
+    if type(Players[source]) == "nil" then
+        return false
+    end
+    return true
 
 end
 
@@ -26,7 +26,7 @@ end
 --
 function AddPlayer(source, player)
 
-  Players[source] = player
+    Players[source] = player
 
 end
 
@@ -35,7 +35,7 @@ end
 --
 function RemovePlayer(source)
 
-  Players[source] = nil
+    Players[source] = nil
 
 end
 
@@ -44,7 +44,7 @@ end
 --
 function GetPlayers()
 
-  return Players
+    return Players
 
 end
 
@@ -53,8 +53,8 @@ end
 --
 function GetIdentifier(source)
 
-  local identifiers = GetPlayerIdentifiers(source)
-  return identifiers[1]
+    local identifiers = GetPlayerIdentifiers(source)
+    return identifiers[1]
 
 end
 
@@ -63,14 +63,15 @@ end
 --
 function GetPlayerFromIdentifier(identifier)
 
-  local playerData = nil
-  local data = exports.ft_database:QueryFetch("SELECT * FROM players WHERE identifier = @identifier", { ['@identifier'] = identifier })
-
-  if data ~= nil then
-    playerData = player.new(data)
-  end
-
-  return playerData
+    local result = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE identifier = @identifier", { ['@identifier'] = identifier })
+    local count = #result
+    if count > 1 then
+        print("[FT_PLAYERS] the player " .. identifier .. " is duplicated in the database")
+    end
+    if result[1] ~= nil then
+        return player.new(result)
+    end
+    return false
 
 end
 
@@ -79,14 +80,15 @@ end
 --
 function GetPlayerFromId(id)
 
-  local playerData = nil
-  local data = exports.ft_database:QueryFetch("SELECT * FROM players WHERE id = @id", { ['@id'] = id })
-
-  if data ~= nil then
-    playerData = player.new(data)
-  end
-
-  return player
+    local result = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE id = @id", { ['@id'] = id })
+    local count = #result
+    if count > 1 then
+        print("[FT_PLAYERS] the player " .. identifier .. " is duplicated in the database")
+    end
+    if data[1] ~= nil then
+        return player.new(data)
+    end
+    return false
 
 end
 
@@ -94,8 +96,10 @@ end
 -- Get player by serverId (source)
 --
 function GetPlayerFromServerId(source)
-  local playerData = Players[source]
-  return playerData
+
+    local playerData = Players[source]
+    return playerData
+
 end
 
 --
@@ -103,9 +107,9 @@ end
 --
 function CreatePlayer(identifier)
 
-  local date = os.date("%Y-%m-%d %X")
-  local result = exports.ft_database:QueryExecute("INSERT INTO players (`identifier`, `created_at`) VALUES (@identifier, @created_at)", { ['@identifier'] = identifier, ['@created_at'] = date } )
-  return result
+    local date = os.date("%Y-%m-%d %X")
+    local result = exports.ft_database:QueryExecute("INSERT IGNORE INTO players (`identifier`, `created_at`) VALUES (@identifier, @created_at)", { ['@identifier'] = identifier, ['@created_at'] = date } )
+    return result
 
 end
 
@@ -113,14 +117,18 @@ end
 -- Add callback on player drop
 --
 function AddPlayerDropCallback(callback)
-  table.insert(PlayerDropCallback, callback)
+
+    table.insert(PlayerDropCallback, callback)
+
 end
 
 --
 -- Add callback on player create
 --
 function AddPlayerCreateCallback(callback)
-  table.insert(PlayerCreateCallback, callback)
+
+    table.insert(PlayerCreateCallback, callback)
+
 end
 
 --
@@ -135,13 +143,13 @@ AddEventHandler('ft_player:PlayerCall', PlayerCall)
 RegisterServerEvent("ft_player:SetPlayer")
 AddEventHandler('ft_player:SetPlayer', function(data)
 
-  local source = source
-  if source == -1 then
-    print("Client only")
-  end
+    local source = source
+    if source == -1 then
+        print("Client only")
+    end
 
-  local player = Players[source]
-  player:Set(data)
+    local player = Players[source]
+    player:Set(data)
 
 end)
 
@@ -151,13 +159,13 @@ end)
 RegisterServerEvent("ft_player:SetLocalPlayer")
 AddEventHandler('ft_player:SetLocalPlayer', function(data)
 
-  local source = source
-  if source == -1 then
-    print("Client only")
-  end
+    local source = source
+    if source == -1 then
+        print("Client only")
+    end
 
-  local player = Players[source]
-  player:SetLocal(data)
+    local player = Players[source]
+    player:SetLocal(data)
 
 end)
 
@@ -167,33 +175,33 @@ end)
 RegisterServerEvent("ft_libs:OnClientReady")
 AddEventHandler('ft_libs:OnClientReady', function()
 
-  local source = source
-  local player = {}
+    local source = source
+    local player = {}
 
-  if not PlayerExist(source) then
+    if not PlayerExist(source) then
 
-    local identifier = GetIdentifier(source)
-    player = GetPlayerFromIdentifier(identifier)
-    if type(player) == "nil" then
-      CreatePlayer(identifier) -- Create player in db
-      player = GetPlayerFromIdentifier(identifier) -- Select player in db
+        local identifier = GetIdentifier(source)
+        player = GetPlayerFromIdentifier(identifier)
+        if player == false then
+            CreatePlayer(identifier) -- Create player in db
+            player = GetPlayerFromIdentifier(identifier) -- Select player in db
 
-      for _, callback in pairs(PlayerCreateCallback) do
-        callback(player)
-      end
+            for _, callback in pairs(PlayerCreateCallback) do
+                callback(player)
+            end
+        end
+
+        player.source = source
+        AddPlayer(source, player)
+
     end
 
-    player.source = source
-    AddPlayer(source, player)
+    -- Send to client
+    TriggerClientEvent("ft_player:InitPlayer", source, player)
 
-  end
-
-  -- Send to client
-  TriggerClientEvent("ft_player:InitPlayer", source, player)
-
-  -- Send playerReadyToJoin event
-  TriggerClientEvent("ft_player:PlayerReadyToJoin", source)
-  TriggerEvent("ft_player:PlayerReadyToJoin", source)
+    -- Send playerReadyToJoin event
+    TriggerClientEvent("ft_player:PlayerReadyToJoin", source)
+    TriggerEvent("ft_player:PlayerReadyToJoin", source)
 
 end)
 
@@ -202,17 +210,17 @@ end)
 --
 AddEventHandler('playerDropped', function()
 
-  local source = source
+    local source = source
 
-  -- Remove in player list
-  if PlayerExist(source) then
+    -- Remove in player list
+    if PlayerExist(source) then
 
-    local player = Players[source]
-    for _, callback in pairs(PlayerDropCallback) do
-      callback(player)
+        local player = Players[source]
+        for _, callback in pairs(PlayerDropCallback) do
+            callback(player)
+        end
+        RemovePlayer(source)
+
     end
-    RemovePlayer(source)
-
-  end
 
 end)
