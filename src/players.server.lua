@@ -10,42 +10,47 @@ PlayerDropCallback = {}
 PlayerCreateCallback = {}
 
 --
--- Functions
---
-
 -- Check if is in the list player
+--
 function PlayerExist(source)
 
   if type(Players[source]) == "nil" then
     return false
-  else
-    return true
   end
+  return true
 
 end
 
+--
 -- Add Plays in player list
+--
 function AddPlayer(source, player)
 
   Players[source] = player
 
 end
 
+--
 -- Remove Plays in player list
+--
 function RemovePlayer(source)
 
   Players[source] = nil
 
 end
 
+--
 -- Get All player
+--
 function GetPlayers()
 
   return Players
 
 end
 
+--
 -- Get Identifier
+--
 function GetIdentifier(source)
 
   local identifiers = GetPlayerIdentifiers(source)
@@ -53,41 +58,49 @@ function GetIdentifier(source)
 
 end
 
+--
 -- Get player by identifier
+--
 function GetPlayerFromIdentifier(identifier)
 
   local playerData = nil
-  local data = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE identifier = @identifier", { ['@identifier'] = identifier })
+  local data = exports.ft_database:QueryFetch("SELECT * FROM players WHERE identifier = @identifier", { ['@identifier'] = identifier })
 
-  if data[1] ~= nil then
-    playerData = player.new(data[1])
+  if data ~= nil then
+    playerData = player.new(data)
   end
 
   return playerData
 
 end
 
+--
 -- Get player by id
+--
 function GetPlayerFromId(id)
 
   local playerData = nil
-  local data = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE id = @id", { ['@id'] = id })
+  local data = exports.ft_database:QueryFetch("SELECT * FROM players WHERE id = @id", { ['@id'] = id })
 
-  if data[1] ~= nil then
-    playerData = player.new(data[1])
+  if data ~= nil then
+    playerData = player.new(data)
   end
 
   return player
 
 end
 
+--
 -- Get player by serverId (source)
+--
 function GetPlayerFromServerId(source)
   local playerData = Players[source]
   return playerData
 end
 
+--
 -- Create player in database
+--
 function CreatePlayer(identifier)
 
   local date = os.date("%Y-%m-%d %X")
@@ -96,17 +109,23 @@ function CreatePlayer(identifier)
 
 end
 
+--
 -- Add callback on player drop
+--
 function AddPlayerDropCallback(callback)
   table.insert(PlayerDropCallback, callback)
 end
 
+--
 -- Add callback on player create
+--
 function AddPlayerCreateCallback(callback)
   table.insert(PlayerCreateCallback, callback)
 end
 
+--
 -- Player Methods for export
+--
 function PlayerCall(method, source, ...)
 
   local args = {...}
@@ -142,14 +161,14 @@ function PlayerCall(method, source, ...)
 end
 
 --
--- Events
---
-
 -- CellPlayer
+--
 RegisterServerEvent("ft_player:PlayerCall")
 AddEventHandler('ft_player:PlayerCall', PlayerCall)
 
+--
 -- Update Player
+--
 RegisterServerEvent("ft_player:SetPlayer")
 AddEventHandler('ft_player:SetPlayer', function(data)
 
@@ -163,7 +182,9 @@ AddEventHandler('ft_player:SetPlayer', function(data)
 
 end)
 
+--
 -- Update local Player
+--
 RegisterServerEvent("ft_player:SetLocalPlayer")
 AddEventHandler('ft_player:SetLocalPlayer', function(data)
 
@@ -177,7 +198,9 @@ AddEventHandler('ft_player:SetLocalPlayer', function(data)
 
 end)
 
+--
 -- Event is emited after client is 100% loaded games
+--
 RegisterServerEvent("ft_libs:OnClientReady")
 AddEventHandler('ft_libs:OnClientReady', function()
 
@@ -211,7 +234,9 @@ AddEventHandler('ft_libs:OnClientReady', function()
 
 end)
 
+--
 -- Event before player leave
+--
 AddEventHandler('playerDropped', function()
 
   local source = source

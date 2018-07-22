@@ -5,222 +5,165 @@
 -- @Source: https://github.com/FivemTools/ft_players
 --
 
---
--- Class
---
-
 Player = {}
 
+--
 -- Get player atributs
-Player.Get = function(...)
+--
+function GetPlayer(...)
 
-  local args = {...}
-  local count = #args
+    local args = {...}
+    local count = #args
 
-  if count == 1 and type(args[1]) == "table" then
+    if count == 1 and type(args[1]) == "table" then
 
-    local table = {}
-    for _, name in pairs(args[1]) do
-      table[name] = Player[name]
+        local table = {}
+        for _, name in pairs(args[1]) do
+            table[name] = Player[name]
+        end
+        return table
+
+    elseif count == 1 then
+
+        local name = args[1]
+        return Player[name]
+
     end
-    return table
-
-  elseif count == 1 then
-
-    local name = args[1]
-    return Player[name]
-
-  else
-
     return false
-
-  end
 
 end
 
+--
 -- Set player atributs
-Player.SetLocal = function(...)
+--
+function SetLocalPlayer(...)
 
-  local args = {...}
-  local count = #args
-  local update = {}
+    local args = {...}
+    local count = #args
+    local update = {}
 
-  if count == 1 and type(args[1]) == "table" then
+    if count == 1 and type(args[1]) == "table" then
 
-    for name, value in pairs(args[1]) do
-      Player[name] = value
-      update[name] = value
+        for name, value in pairs(args[1]) do
+            Player[name] = value
+            update[name] = value
+        end
+        return update
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local value = args[2]
+        Player[name] = value
+        update[name] = value
+        return update
+
     end
-
-    return update
-
-  elseif count == 2 then
-
-    local name = args[1]
-    local value = args[2]
-    Player[name] = value
-    update[name] = value
-
-    return update
-
-  else
-
     return false
-
-  end
 
 end
 
+--
 -- Set player data
-Player.Set = function(...)
+--
+function SetPlayer(...)
 
-  local update = Player.SetLocal(...)
-
-  if update ~= false and update ~= nil then
-    TriggerServerEvent('ft_player:SetPlayer', update)
-  end
+    local update = Player.SetLocal(...)
+    if update ~= false and update ~= nil then
+        TriggerServerEvent('ft_player:SetPlayer', update)
+    end
 
 end
 
+--
 -- Save data in Database
-Player.Save = function(...)
+--
+function SavePlayer(...)
 
-  local args = {...}
-  local count = #args
-  local update = {}
+    local args = {...}
+    local count = #args
+    local update = {}
 
-  if count == 1 and type(args[1]) == "table" then
+    if count == 1 and type(args[1]) == "table" then
 
-    for _, name in pairs(args[1]) do
-      update[name] = Player[name]
+        for _, name in pairs(args[1]) do
+            update[name] = Player[name]
+        end
+        TriggerServerEvent('ft_player:SetPlayer', update)
+
+    elseif count == 1 then
+
+        local name = args[1]
+        update[name] = Player[name]
+        TriggerServerEvent('ft_player:SetPlayer', update)
+
     end
-
-  elseif count == 1 then
-
-    local name = args[1]
-    update[name] = Player[name]
-
-  else
-
     return false
 
-  end
-
-  -- Send to server
-  if update ~= nil then
-    TriggerServerEvent('ft_player:SetPlayer', update)
-  end
-
 end
 
+--
 -- Get Palyer pos
-Player.Pos = function()
+--
+function PlayerPos()
 
-  local player = GetPlayerPed(-1)
-  local pos = GetEntityCoords(player, true)
-  local heading = GetEntityHeading(player)
-
-  local data = {
-    pos_x = pos.x,
-    pos_y = pos.y,
-    pos_z = pos.z,
-    heading = heading,
-  }
-
-  return data
+    local player = GetPlayerPed(-1)
+    local pos = GetEntityCoords(player, true)
+    local heading = GetEntityHeading(player)
+    local data = {
+        pos_x = pos.x,
+        pos_y = pos.y,
+        pos_z = pos.z,
+        heading = heading,
+    }
+    return data
 
 end
 
--- Add method to player class
-function AddPlayerMethod(name, method)
-  Player[name] = method
-end
-
+--
 -- Return player
+--
 function GetPlayer()
-  return Player
-end
-
--- Player Methods for export
-function PlayerCall(method, ...)
-
-  local args = {...}
-  local count = #args
-
-  if count >= 1 then
-
-    local callback = Player[method]
-
-    if callback == nil then
-      Citizen.Trace("[Player] method : " ..method .. " no exist")
-      return false
-    end
-
-    return callback(Player, ...)
-
-  end
-
-  return false
-
+    return Player
 end
 
 --
--- Events
---
-
--- Client is 100% loaded games
-Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(1)
-
-    if NetworkIsSessionStarted() then
-
-      TriggerServerEvent('ft_player:OnClientReady')
-      TriggerEvent('ft_player:OnClientReady')
-      break
-
-    end
-
-  end
-end)
-
 -- Update Player
+--
 RegisterNetEvent("ft_player:SetPlayer")
 AddEventHandler('ft_player:SetPlayer', function(data)
 
-  local source = source
-  if source == -1 then
-    print("Server only")
-  end
-
-  Player.Set(data)
+    local source = source
+    if source == -1 then
+        print("Server only")
+    end
+    SetPlayer(data)
 
 end)
 
+--
 -- Update Local Player
+--
 RegisterNetEvent("ft_player:SetLocalPlayer")
 AddEventHandler('ft_player:SetLocalPlayer', function(data)
 
-  local source = source
-  local data = data
-  if source == -1 then
-    print("Server only")
-  end
-
-  Player.SetLocal(data)
+    local source = source
+    local data = data
+    if source == -1 then
+        print("Server only")
+    end
+    SetPlayerLocal(data)
 
 end)
 
+--
 -- Init client
+--
 RegisterNetEvent("ft_player:InitPlayer")
 AddEventHandler('ft_player:InitPlayer', function(data)
 
-  for name, value in pairs(data) do
-    if type(value) ~= "table" then
-      Player[name] = value
+    if data ~= nil then
+        SetLocalPlayer(data)
     end
-  end
-  print("ft_player init")
-  exports.ft_libs:PrintTable(data)
 
 end)
