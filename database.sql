@@ -5,10 +5,15 @@
  * @Source: https://github.com/FivemTools/ft_players
  */
 
-CREATE TABLE IF NOT EXISTS `players` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `identifier` varchar(255) DEFAULT NULL,
-  `createdAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `identifier` (`identifier`)
-);
+CREATE TABLE `players` (
+    `id` int(11) NOT NULL,
+    `identifier` varchar(255) NOT NULL,
+    `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `players`
+    ADD PRIMARY KEY (`id`),
+    ADD UNIQUE KEY `identifier` (`identifier`);
+
+ALTER TABLE `players`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
