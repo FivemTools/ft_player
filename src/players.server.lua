@@ -69,7 +69,7 @@ function GetPlayerFromIdentifier(identifier)
         print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
     end
     if result[1] ~= nil then
-        exports.ft_libs:DebugPrint(result[1])
+        exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromIdentifier")
         return player.new(result)
     end
     return false
@@ -87,7 +87,7 @@ function GetPlayerFromId(id)
         print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
     end
     if data[1] ~= nil then
-        exports.ft_libs:DebugPrint(result[1])
+        exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromId")
         return player.new(data)
     end
     return false
@@ -204,6 +204,8 @@ AddEventHandler('ft_libs:OnClientReady', function()
     -- Send playerReadyToJoin event
     TriggerClientEvent("ft_player:PlayerReadyToJoin", source)
     TriggerEvent("ft_player:PlayerReadyToJoin", source)
+
+    exports.ft_libs:DebugPrint(result[1], "FT_PLAYER Players list")
 
 end)
 
