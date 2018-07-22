@@ -161,6 +161,7 @@ RegisterNetEvent("ft_player:InitPlayer")
 AddEventHandler('ft_player:InitPlayer', function(data)
 
     if data ~= nil then
+        exports.ft_libs:DebugPrint(data)
         SetLocalPlayer(data)
     end
 

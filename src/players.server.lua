@@ -66,9 +66,10 @@ function GetPlayerFromIdentifier(identifier)
     local result = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE identifier = @identifier", { ['@identifier'] = identifier })
     local count = #result
     if count > 1 then
-        print("[FT_PLAYERS] the player " .. identifier .. " is duplicated in the database")
+        print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
     end
     if result[1] ~= nil then
+        exports.ft_libs:DebugPrint(result[1])
         return player.new(result)
     end
     return false
@@ -83,9 +84,10 @@ function GetPlayerFromId(id)
     local result = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE id = @id", { ['@id'] = id })
     local count = #result
     if count > 1 then
-        print("[FT_PLAYERS] the player " .. identifier .. " is duplicated in the database")
+        print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
     end
     if data[1] ~= nil then
+        exports.ft_libs:DebugPrint(result[1])
         return player.new(data)
     end
     return false
