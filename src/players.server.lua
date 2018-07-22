@@ -53,8 +53,12 @@ end
 --
 function GetIdentifier(source)
 
-    local identifiers = GetPlayerIdentifiers(source)
-    return identifiers[1]
+    if Settings.identifier == "steam" then
+        return exports.ft_libs:GetSteamIDFormSource(source)
+    elseif Settings.identifier == "ip" then
+        return exports.ft_libs:GetIpFormSource(source)
+    end
+    return false
 
 end
 
@@ -68,9 +72,9 @@ function GetPlayerFromIdentifier(identifier)
     if count > 1 then
         print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
     end
-    if result[1] ~= nil then
+    if result ~= nil and result[1] ~= nil then
         exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromIdentifier")
-        return player.new(result)
+        return player.new(result[1])
     end
     return false
 
@@ -86,9 +90,9 @@ function GetPlayerFromId(id)
     if count > 1 then
         print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
     end
-    if data[1] ~= nil then
+    if result ~= nil and result[1] ~= nil then
         exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromId")
-        return player.new(data)
+        return player.new(result[1])
     end
     return false
 
@@ -110,7 +114,7 @@ end
 function CreatePlayer(identifier)
 
     local date = os.date("%Y-%m-%d %X")
-    local result = exports.ft_database:QueryExecute("INSERT IGNORE INTO players (`identifier`, `created_at`) VALUES (@identifier, @created_at)", { ['@identifier'] = identifier, ['@created_at'] = date } )
+    local result = exports.ft_database:QueryExecute("INSERT IGNORE INTO players (`identifier`, `createdAt`) VALUES (@identifier, @createdAt)", { ['@identifier'] = identifier, ['@created_at'] = date } )
     return result
 
 end
@@ -183,18 +187,23 @@ AddEventHandler('ft_libs:OnClientReady', function()
     if not PlayerExist(source) then
 
         local identifier = GetIdentifier(source)
-        player = GetPlayerFromIdentifier(identifier)
-        if player == false then
-            CreatePlayer(identifier) -- Create player in db
-            player = GetPlayerFromIdentifier(identifier) -- Select player in db
+        if identifier ~= false then
+            player = GetPlayerFromIdentifier(identifier)
+            if player == false then
+                CreatePlayer(identifier) -- Create player in db
+                player = GetPlayerFromIdentifier(identifier) -- Select player in db
 
-            for _, callback in pairs(PlayerCreateCallback) do
-                callback(player)
+                for _, callback in pairs(PlayerCreateCallback) do
+                    callback(player)
+                end
             end
-        end
 
-        player.source = source
-        AddPlayer(source, player)
+            player.source = source
+            AddPlayer(source, player)
+        else
+            DropPlayer(source, Settings.identifierNotFoundKickMessage)
+            return false
+        end
 
     end
 
@@ -205,7 +214,7 @@ AddEventHandler('ft_libs:OnClientReady', function()
     TriggerClientEvent("ft_player:PlayerReadyToJoin", source)
     TriggerEvent("ft_player:PlayerReadyToJoin", source)
 
-    exports.ft_libs:DebugPrint(result[1], "FT_PLAYER Players list")
+    exports.ft_libs:DebugPrint(Players, "FT_PLAYER Players list")
 
 end)
 
