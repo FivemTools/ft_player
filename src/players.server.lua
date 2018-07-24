@@ -65,7 +65,7 @@ end
 --
 -- Retunr player is player is connected
 --
-function IsPlayerConnectedFormIdentifier(identifier)
+function GetPlayerIsConnectedFormIdentifier(identifier)
 
     local players = exports.ft_player:GetPlayers()
     for _, player in pairs(players) do
@@ -80,7 +80,7 @@ end
 --
 -- Retunr player is player is connected
 --
-function IsPlayerConnectedFormId(id)
+function GetPlayerIsConnectedFormId(id)
 
     local players = exports.ft_player:GetPlayers()
     for _, player in pairs(players) do
@@ -97,19 +97,23 @@ end
 --
 function GetPlayerFromIdentifier(identifier)
 
-    local data = GetPlayerIsConnectedFormIdentifier(identifier) then
+    local data = GetPlayerIsConnectedFormIdentifier(identifier)
     if data ~= false then
         return data
     else
+
         local result = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE identifier = @identifier", { ['@identifier'] = identifier })
-        local count = #result
-        if count > 1 then
-            print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
+        if result then
+            local count = #result
+            if count > 1 then
+                print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
+            end
+            if result ~= nil and result[1] ~= nil then
+                exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromIdentifier")
+                return player.new(result[1])
+            end
         end
-        if result ~= nil and result[1] ~= nil then
-            exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromIdentifier")
-            return player.new(result[1])
-        end
+
     end
     return false
 
@@ -120,18 +124,20 @@ end
 --
 function GetPlayerFromId(id)
 
-    local data = GetPlayerIsConnectedFormId(identifier) then
+    local data = GetPlayerIsConnectedFormId(identifier)
     if data ~= false then
         return data
     else
         local result = exports.ft_database:QueryFetchAll("SELECT * FROM players WHERE id = @id", { ['@id'] = id })
-        local count = #result
-        if count > 1 then
-            print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
-        end
-        if result ~= nil and result[1] ~= nil then
-            exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromId")
-            return player.new(result[1])
+        if result then
+            local count = #result
+            if count > 1 then
+                print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
+            end
+            if result ~= nil and result[1] ~= nil then
+                exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromId")
+                return player.new(result[1])
+            end
         end
     end
     return false
