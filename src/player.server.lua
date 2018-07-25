@@ -14,42 +14,35 @@ local Player = {}
 function Player:Save(...)
 
     local args = {...}
-    local count = #args
+    local countArgs = #args
     local secure = {
-        ['@identifier'] = self.identifier,
+        ['@id'] = self.id,
     }
 
-    if count == 1 and type(args[1]) == "table" then
+    if countArgs == 1 and type(args[1]) == "table" then
 
-        local number = 0
         local str_query = ""
-
         for _, name in pairs(args[1]) do
             if name ~= "id" and name ~= "identifier" then
-
                 if number ~= 0 then
                     str_query = str_query .. ", "
                 end
-
                 str_query = str_query .. tostring(name) .. " = @" .. tostring(name)
                 secure["@" .. tostring(name)] = self[name]
-                number = number + 1
-
             end
         end
 
-        if number >= 1 then
-            exports.ft_database:QueryExecute("UPDATE players SET " .. str_query .. " WHERE identifier = @identifier", secure)
+        if #secure > 1 then
+            exports.ft_database:QueryExecute("UPDATE players SET " .. str_query .. " WHERE id = @id", secure)
             return true
         end
 
-    elseif count == 1 then
+    elseif countArgs == 1 then
 
         local name = args[1]
-
         if name ~= "id" and name ~= "identifier" then
             secure["@" .. name] = self[name]
-            exports.ft_database:QueryExecute("UPDATE players SET " .. name .. " = @" .. name .. " WHERE identifier = @identifier", secure)
+            exports.ft_database:QueryExecute("UPDATE players SET " .. name .. " = @" .. name .. " WHERE id = @id", secure)
             return true
         end
 
@@ -64,9 +57,9 @@ end
 function Player:Get(...)
 
     local args = {...} -- Get all arguments
-    local count = #args -- Count number arguments
+    local countArgs = #args -- Count number arguments
 
-    if count == 1 and type(args[1]) == "table" then
+    if countArgs == 1 and type(args[1]) == "table" then
 
         local table = {}
         for _, name in pairs(args[1]) do
@@ -74,7 +67,7 @@ function Player:Get(...)
         end
         return table
 
-    elseif count == 1 then
+    elseif countArgs == 1 then
 
         local name = args[1]
         return self[name]
@@ -90,11 +83,11 @@ end
 function Player:SetLocal(...)
 
     local args = {...} -- Get all arguments
-    local count = #args -- Count number arguments
+    local countArgs = #args -- Count number arguments
     local save = {}
     local update = {}
 
-    if count == 1 and type(args[1]) == "table" then
+    if countArgs == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
             table.insert(save, name)
@@ -102,7 +95,7 @@ function Player:SetLocal(...)
             update[name] = value
         end
 
-    elseif count == 2 then
+    elseif countArgs == 2 then
 
         local name = args[1]
         local value = args[2]
@@ -149,5 +142,7 @@ end
 -- Add method to player class
 --
 function AddPlayerMethod(name, method)
+
     Player[name] = method
+
 end
