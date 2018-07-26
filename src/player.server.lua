@@ -93,15 +93,15 @@ function Player:Set(...)
 
     local args = {...} -- Get all arguments
     local countArgs = #args -- Count number arguments
-    local save = {}
     local update = {}
 
     if countArgs == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
-            table.insert(save, name)
-            self[name] = value
-            update[name] = value
+            if self[name] ~= value then
+                self[name] = value
+                update[name] = value
+            end
         end
         TriggerClientEvent("ft_player:SetPlayer", self.source, update)
 
@@ -109,8 +109,10 @@ function Player:Set(...)
 
         local name = args[1]
         local value = args[2]
-        self[name] = value
-        TriggerClientEvent("ft_player:SetPlayer", self.source, name, value)
+        if self[name] ~= value then
+            self[name] = value
+            TriggerClientEvent("ft_player:SetPlayer", self.source, name, value)
+        end
 
     else
 
