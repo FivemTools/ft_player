@@ -14,155 +14,85 @@ function GetPlayer(...)
 
     local args = {...}
     local count = #args
+    local data = exports.ft_libs:Clone(Player)
 
     if count == 1 and type(args[1]) == "table" then
 
         local table = {}
         for _, name in pairs(args[1]) do
-            table[name] = Player[name]
+            table[name] = data[name]
         end
         return table
 
     elseif count == 1 then
 
         local name = args[1]
-        return Player[name]
+        return data[name]
 
     end
-    return false
-
-end
-
---
--- Set player atributs
---
-function SetLocalPlayer(...)
-
-    local args = {...}
-    local count = #args
-    local update = {}
-
-    if count == 1 and type(args[1]) == "table" then
-
-        for name, value in pairs(args[1]) do
-            Player[name] = value
-            update[name] = value
-        end
-        return update
-
-    elseif count == 2 then
-
-        local name = args[1]
-        local value = args[2]
-        Player[name] = value
-        update[name] = value
-        return update
-
-    end
-    return false
-
-end
-
---
--- Set player data
---
-function SetPlayer(...)
-
-    local update = Player.SetLocal(...)
-    if update ~= false and update ~= nil then
-        TriggerServerEvent('ft_player:SetPlayer', update)
-    end
+    return data
 
 end
 
 --
 -- Save data in Database
 --
-function SavePlayer(...)
+function SetPlayer(...)
 
     local args = {...}
     local count = #args
-    local update = {}
+    local source = source
 
-    if count == 1 and type(args[1]) == "table" then
+    if source == -1 then
 
-        for _, name in pairs(args[1]) do
-            update[name] = Player[name]
+        TriggerServerEvent('ft_player:SetPlayer', args)
+
+    else
+
+        if count == 1 and type(args[1]) == "table" then
+
+            for name, value in pairs(args[1]) do
+                Player[name] = value
+            end
+
+        elseif count == 2 then
+
+            local name = args[1]
+            local value = args[2]
+            Player[name] = value
+
         end
-        TriggerServerEvent('ft_player:SetPlayer', update)
 
-    elseif count == 1 then
-
-        local name = args[1]
-        update[name] = Player[name]
-        TriggerServerEvent('ft_player:SetPlayer', update)
+        exports.ft_libs:DebugPrint(Player, "FT_PLAYER SetPlayer")
 
     end
-    return false
 
 end
 
 --
--- Get Palyer pos
+-- Save to BDD
 --
-function PlayerPos()
+function SavePlayer(...)
 
-    local playerPed = GetPlayerPed(-1)
-    local pedPos = GetEntityCoords(playerPed, true)
-    local heading = GetEntityHeading(playerPed)
-    local data = {
-        posX = pedPos.x,
-        posY = pedPos.y,
-        posZ = pedPos.z,
-        heading = heading,
-    }
-    return data
+    TriggerServerEvent('ft_player:SavePlayer', ...)
 
-end
-
---
--- Return player
---
-function GetPlayer()
-    return Player
 end
 
 --
 -- Update Player
 --
 RegisterNetEvent("ft_player:SetPlayer")
-AddEventHandler('ft_player:SetPlayer', function(data)
+AddEventHandler('ft_player:SetPlayer', SetPlayer)
 
-    if source == -1 then
-        print("Server only")
-    end
-    SetPlayer(data)
+--
+-- Update Player
+--
+RegisterNetEvent("ft_player:OnPlayerReadyToJoin")
+AddEventHandler('ft_player:OnPlayerReadyToJoin', function()
+
+    SetPlayer({ ["money"] = 10000 })
+    Wait(1000)
+    SavePlayer("money")
 
 end)
 
---
--- Update Local Player
---
-RegisterNetEvent("ft_player:SetLocalPlayer")
-AddEventHandler('ft_player:SetLocalPlayer', function(data)
-
-    local data = data
-    if source == -1 then
-        print("Server only")
-    end
-    SetPlayerLocal(data)
-
-end)
-
---
--- Init client
---
-RegisterNetEvent("ft_player:InitPlayer")
-AddEventHandler('ft_player:InitPlayer', function(data)
-
-    if data ~= nil then
-        exports.ft_libs:DebugPrint(data)
-        SetLocalPlayer(data)
-    end
-
-end)

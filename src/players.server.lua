@@ -149,8 +149,7 @@ end
 --
 function GetPlayerFromServerId(source)
 
-    local playerData = Players[source]
-    return playerData
+    return Players[source]
 
 end
 
@@ -159,7 +158,12 @@ end
 --
 function CreatePlayer(identifier)
 
-    local result = exports.ft_database:QueryExecute("INSERT IGNORE INTO players (`identifier`, `createdAt`) VALUES (@identifier, NOW())", { ['@identifier'] = identifier } )
+    local result = exports.ft_database:QueryExecute(
+        "INSERT IGNORE INTO players (`identifier`, `createdAt`) VALUES (@identifier, NOW())",
+        {
+            ['@identifier'] = identifier,
+        }
+    )
     return result
 
 end
@@ -183,40 +187,30 @@ function AddPlayerCreateCallback(callback)
 end
 
 --
--- CellPlayer
---
-RegisterServerEvent("ft_player:PlayerCall")
-AddEventHandler('ft_player:PlayerCall', PlayerCall)
-
---
--- Update Player
+-- Set Player
 --
 RegisterServerEvent("ft_player:SetPlayer")
 AddEventHandler('ft_player:SetPlayer', function(data)
 
     local source = source
-    if source == -1 then
-        print("Client only")
+    if PlayerExist(source) then
+        local player = Players[source]
+        player:Set(data)
     end
-
-    local player = Players[source]
-    player:Set(data)
 
 end)
 
 --
--- Update local Player
+-- Save Player
 --
-RegisterServerEvent("ft_player:SetLocalPlayer")
-AddEventHandler('ft_player:SetLocalPlayer', function(data)
+RegisterServerEvent("ft_player:SavePlayer")
+AddEventHandler('ft_player:SavePlayer', function(data)
 
     local source = source
-    if source == -1 then
-        print("Client only")
+    if PlayerExist(source) then
+        local player = Players[source]
+        player:Save(data)
     end
-
-    local player = Players[source]
-    player:SetLocal(data)
 
 end)
 
@@ -245,20 +239,24 @@ AddEventHandler('ft_libs:OnClientReady', function()
 
             player.source = source
             AddPlayer(source, player)
+
         else
+
             DropPlayer(source, Settings.identifierNotFoundKickMessage)
             return false
+
         end
 
     end
 
     -- Send to client
-    TriggerClientEvent("ft_player:InitPlayer", source, player)
+    TriggerClientEvent("ft_player:SetPlayer", source, player)
 
-    -- Send playerReadyToJoin event
-    TriggerClientEvent("ft_player:PlayerReadyToJoin", source)
-    TriggerEvent("ft_player:PlayerReadyToJoin", source)
+    -- Send OnPlayerReadyToJoin event
+    TriggerClientEvent("ft_player:OnPlayerReadyToJoin", source)
+    TriggerEvent("ft_player:OnPlayerReadyToJoin", source)
 
+    -- Debug values
     exports.ft_libs:DebugPrint(Players, "FT_PLAYER Players list")
 
 end)

@@ -30,8 +30,7 @@ server_scripts {
 exports {
 
     "GetPlayer",
-    "AddPlayerMethod",
-    "PlayerCall",
+    "SetPlayer",
 
 }
 

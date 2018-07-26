@@ -19,29 +19,38 @@ function Player:Save(...)
         ['@id'] = self.id,
     }
 
+    exports.ft_libs:PrintTable(args[1])
+
+    print("save player")
     if countArgs == 1 and type(args[1]) == "table" then
 
+        print("save player table")
         local str_query = ""
         for _, name in pairs(args[1]) do
             if name ~= "id" and name ~= "identifier" then
                 if number ~= 0 then
                     str_query = str_query .. ", "
                 end
+                print("Update : " .. name)
                 str_query = str_query .. tostring(name) .. " = @" .. tostring(name)
                 secure["@" .. tostring(name)] = self[name]
             end
         end
 
-        if #secure > 1 then
+        if #secure >= 1 then
+            exports.ft_libs:PrintTable(secure)
             exports.ft_database:QueryExecute("UPDATE players SET " .. str_query .. " WHERE id = @id", secure)
             return true
         end
 
     elseif countArgs == 1 then
 
+        print("save player simple")
         local name = args[1]
         if name ~= "id" and name ~= "identifier" then
             secure["@" .. name] = self[name]
+            print("Update : " .. name)
+            exports.ft_libs:PrintTable(secure)
             exports.ft_database:QueryExecute("UPDATE players SET " .. name .. " = @" .. name .. " WHERE id = @id", secure)
             return true
         end
@@ -80,7 +89,7 @@ end
 --
 -- Set player atributs in local
 --
-function Player:SetLocal(...)
+function Player:Set(...)
 
     local args = {...} -- Get all arguments
     local countArgs = #args -- Count number arguments
@@ -94,36 +103,20 @@ function Player:SetLocal(...)
             self[name] = value
             update[name] = value
         end
+        TriggerClientEvent("ft_player:SetPlayer", self.source, update)
 
     elseif countArgs == 2 then
 
         local name = args[1]
         local value = args[2]
-        table.insert(save, name)
         self[name] = value
-        update[name] = value
+        TriggerClientEvent("ft_player:SetPlayer", self.source, name, value)
 
     else
 
         return false
 
     end
-
-    return {
-        update = update,
-        save = save,
-    }
-
-end
-
---
--- Set player atributs
---
-function Player:Set(...)
-
-    local data = self:SetLocal(...)
-    TriggerClientEvent("ft_player:SetLocalPlayer", self.source, data.update)
-    self:Save(data.save)
 
 end
 
@@ -135,14 +128,5 @@ function player.new(data)
     local self = data
     setmetatable(self, { __index = Player })
     return self
-
-end
-
---
--- Add method to player class
---
-function AddPlayerMethod(name, method)
-
-    Player[name] = method
 
 end

@@ -6,6 +6,6 @@
 --
 
 Settings = {
-    identifier = "ip",
+    identifier = "steam",
     identifierNotFoundKickMessage = "Unable to identify you via steam or IP",
 }
