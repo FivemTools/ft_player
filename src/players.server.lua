@@ -109,7 +109,7 @@ function GetPlayerFromIdentifier(identifier)
                 print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
             end
             if result ~= nil and result[1] ~= nil then
-                exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromIdentifier")
+                -- exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromIdentifier")
                 return player.new(result[1])
             end
         end
@@ -135,7 +135,7 @@ function GetPlayerFromId(id)
                 print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
             end
             if result ~= nil and result[1] ~= nil then
-                exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromId")
+                -- exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromId")
                 return player.new(result[1])
             end
         end
@@ -190,12 +190,12 @@ end
 -- Set Player
 --
 RegisterServerEvent("ft_player:SetPlayer")
-AddEventHandler('ft_player:SetPlayer', function(data)
+AddEventHandler('ft_player:SetPlayer', function(...)
 
     local source = source
     if PlayerExist(source) then
         local player = Players[source]
-        player:Set(data)
+        player:Set(...)
     end
 
 end)
@@ -204,12 +204,12 @@ end)
 -- Save Player
 --
 RegisterServerEvent("ft_player:SavePlayer")
-AddEventHandler('ft_player:SavePlayer', function(data)
+AddEventHandler('ft_player:SavePlayer', function(...)
 
     local source = source
     if PlayerExist(source) then
         local player = Players[source]
-        player:Save(data)
+        player:Save(...)
     end
 
 end)
@@ -257,7 +257,7 @@ AddEventHandler('ft_libs:OnClientReady', function()
     TriggerEvent("ft_player:OnPlayerReadyToJoin", source)
 
     -- Debug values
-    exports.ft_libs:DebugPrint(Players, "FT_PLAYER Players list")
+    -- exports.ft_libs:DebugPrint(Players, "FT_PLAYER Players list")
 
 end)
 

@@ -39,33 +39,7 @@ end
 --
 function SetPlayer(...)
 
-    local args = {...}
-    local count = #args
-    local source = source
-
-    if source == -1 then
-
-        TriggerServerEvent('ft_player:SetPlayer', args)
-
-    else
-
-        if count == 1 and type(args[1]) == "table" then
-
-            for name, value in pairs(args[1]) do
-                Player[name] = value
-            end
-
-        elseif count == 2 then
-
-            local name = args[1]
-            local value = args[2]
-            Player[name] = value
-
-        end
-
-        exports.ft_libs:DebugPrint(Player, "FT_PLAYER SetPlayer")
-
-    end
+    TriggerServerEvent('ft_player:SetPlayer', ...)
 
 end
 
@@ -82,7 +56,28 @@ end
 -- Update Player
 --
 RegisterNetEvent("ft_player:SetPlayer")
-AddEventHandler('ft_player:SetPlayer', SetPlayer)
+AddEventHandler('ft_player:SetPlayer', function(...)
+
+    local args = {...}
+    local count = #args
+
+    if count == 1 and type(args[1]) == "table" then
+
+        for name, value in pairs(args[1]) do
+            Player[name] = value
+        end
+
+    elseif count == 2 then
+
+        local name = args[1]
+        local value = args[2]
+        Player[name] = value
+
+    end
+
+    exports.ft_libs:DebugPrint(Player, "FT_PLAYER SetPlayer")
+
+end)
 
 --
 -- Update Player
@@ -90,6 +85,7 @@ AddEventHandler('ft_player:SetPlayer', SetPlayer)
 RegisterNetEvent("ft_player:OnPlayerReadyToJoin")
 AddEventHandler('ft_player:OnPlayerReadyToJoin', function()
 
+    print("ft_player:OnPlayerReadyToJoin")
     SetPlayer({ ["money"] = 10000 })
     Wait(1000)
     SavePlayer("money")

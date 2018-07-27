@@ -19,26 +19,20 @@ function Player:Save(...)
         ['@id'] = self.id,
     }
 
-    exports.ft_libs:PrintTable(args[1])
-
-    print("save player")
     if countArgs == 1 and type(args[1]) == "table" then
 
-        print("save player table")
         local str_query = ""
         for _, name in pairs(args[1]) do
             if name ~= "id" and name ~= "identifier" then
                 if number ~= 0 then
                     str_query = str_query .. ", "
                 end
-                print("Update : " .. name)
                 str_query = str_query .. tostring(name) .. " = @" .. tostring(name)
                 secure["@" .. tostring(name)] = self[name]
             end
         end
 
         if #secure >= 1 then
-            exports.ft_libs:PrintTable(secure)
             exports.ft_database:QueryExecute("UPDATE players SET " .. str_query .. " WHERE id = @id", secure)
             return true
         end
@@ -49,8 +43,6 @@ function Player:Save(...)
         local name = args[1]
         if name ~= "id" and name ~= "identifier" then
             secure["@" .. name] = self[name]
-            print("Update : " .. name)
-            exports.ft_libs:PrintTable(secure)
             exports.ft_database:QueryExecute("UPDATE players SET " .. name .. " = @" .. name .. " WHERE id = @id", secure)
             return true
         end
@@ -98,6 +90,7 @@ function Player:Set(...)
     if countArgs == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
+            print(self[name] .. " = " .. value)
             if self[name] ~= value then
                 self[name] = value
                 update[name] = value
