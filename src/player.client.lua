@@ -78,19 +78,3 @@ AddEventHandler('ft_player:SetPlayer', function(...)
     exports.ft_libs:DebugPrint(Player, "FT_PLAYER SetPlayer")
 
 end)
-
---
--- Update Player
---
-RegisterNetEvent("ft_player:OnPlayerReadyToJoin")
-AddEventHandler('ft_player:OnPlayerReadyToJoin', function()
-
-    print("ft_player:OnPlayerReadyToJoin")
-    SetPlayer({ ["money"] = 10000 })
-    Wait(1000)
-    SavePlayer("money")
-    SetPlayer({ ["money"] = 0 })
-    SetPlayer({ ["money"] = 15945 })
-
-end)
-
