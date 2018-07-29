@@ -53,9 +53,9 @@ end
 --
 function GetIdentifier(source)
 
-    if Settings.identifier == "steam" then
+    if Settings.system.identifier == "steam" then
         return exports.ft_libs:GetSteamIDFormSource(source)
-    elseif Settings.identifier == "ip" then
+    elseif Settings.system.identifier == "ip" then
         return exports.ft_libs:GetIpFormSource(source)
     end
     return false
@@ -109,7 +109,7 @@ function GetPlayerFromIdentifier(identifier)
                 print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
             end
             if result ~= nil and result[1] ~= nil then
-                -- exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromIdentifier")
+                exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromIdentifier")
                 return player.new(result[1])
             end
         end
@@ -135,7 +135,7 @@ function GetPlayerFromId(id)
                 print("[FT_PLAYER] the player " .. identifier .. " is duplicated in the database")
             end
             if result ~= nil and result[1] ~= nil then
-                -- exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromId")
+                exports.ft_libs:DebugPrint(result[1], "FT_PLAYER GetPlayerFromId")
                 return player.new(result[1])
             end
         end
@@ -190,11 +190,40 @@ end
 -- Set Player
 --
 RegisterServerEvent("ft_player:SetPlayer")
-AddEventHandler('ft_player:SetPlayer', function(...)
+AddEventHandler('ft_player:SetPlayer', function(clientPlayer, ...)
 
     local source = source
     if PlayerExist(source) then
         local player = Players[source]
+
+        -- Anti Cheat --
+        local args = {...}
+        local countArgs = #args
+        if countArgs == 1 and type(args[1]) == "table" then
+
+            for name, value in pairs(args[1]) do
+                if player[name] ~= clientPlayer[name] then
+                    DropPlayer(source, Settings.messages.antiCheat)
+                    return false
+                end
+            end
+
+        elseif countArgs == 2 then
+
+            local name = args[1]
+            local value = args[2]
+            if player[name] ~= clientPlayer[name] then
+                DropPlayer(source, Settings.messages.antiCheat)
+                return false
+            end
+
+        else
+
+            return false
+
+        end
+        -- End Anti Cheat --
+
         player:Set(...)
     end
 
@@ -231,6 +260,10 @@ AddEventHandler('ft_libs:OnClientReady', function()
             if player == false then
                 CreatePlayer(identifier) -- Create player in db
                 player = GetPlayerFromIdentifier(identifier) -- Select player in db
+                if player == false then
+                    DropPlayer(source, Settings.messages.playerNotFound)
+                    return false
+                end
 
                 for _, callback in pairs(PlayerCreateCallback) do
                     callback(player)
@@ -242,7 +275,11 @@ AddEventHandler('ft_libs:OnClientReady', function()
 
         else
 
-            DropPlayer(source, Settings.identifierNotFoundKickMessage)
+            if Settings.identifier == "steam" then
+                DropPlayer(source, Settings.messages.steamNotFound)
+            elseif Settings.identifier == "ip" then
+                DropPlayer(source, Settings.messages.ipNotFound)
+            end
             return false
 
         end

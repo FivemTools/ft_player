@@ -39,7 +39,6 @@ function Player:Save(...)
 
     elseif countArgs == 1 then
 
-        print("save player simple")
         local name = args[1]
         if name ~= "id" and name ~= "identifier" then
             secure["@" .. name] = self[name]
@@ -90,7 +89,6 @@ function Player:Set(...)
     if countArgs == 1 and type(args[1]) == "table" then
 
         for name, value in pairs(args[1]) do
-            print(self[name] .. " = " .. value)
             if self[name] ~= value then
                 self[name] = value
                 update[name] = value

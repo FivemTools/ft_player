@@ -39,7 +39,7 @@ end
 --
 function SetPlayer(...)
 
-    TriggerServerEvent('ft_player:SetPlayer', ...)
+    TriggerServerEvent('ft_player:SetPlayer', Player, ...)
 
 end
 
@@ -89,6 +89,8 @@ AddEventHandler('ft_player:OnPlayerReadyToJoin', function()
     SetPlayer({ ["money"] = 10000 })
     Wait(1000)
     SavePlayer("money")
+    SetPlayer({ ["money"] = 0 })
+    SetPlayer({ ["money"] = 15945 })
 
 end)
 
