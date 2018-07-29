@@ -193,44 +193,55 @@ RegisterServerEvent("ft_player:SetPlayer")
 AddEventHandler('ft_player:SetPlayer', function(clientPlayer, ...)
 
     local source = source
-    if Settings.system.savePlayerClient == false then
+    if Settings.system.savePlayerClient == false or not PlayerExist(source) then
         DropPlayer(source, Settings.messages.antiCheat)
         return false
     end
 
-    if PlayerExist(source) then
-        local player = Players[source]
+    local player = Players[source]
 
-        -- Anti Cheat --
-        local args = {...}
-        local countArgs = #args
-        if countArgs == 1 and type(args[1]) == "table" then
+    -- Anti Cheat --
+    local args = {...}
+    local countArgs = #args
+    if countArgs == 1 and type(args[1]) == "table" then
 
-            for name, value in pairs(args[1]) do
-                if player[name] ~= clientPlayer[name] then
-                    DropPlayer(source, Settings.messages.antiCheat)
-                    return false
-                end
-            end
+        local values = args[1]
 
-        elseif countArgs == 2 then
+        if values.uniqueCode ~= player.uniqueCode then
+            DropPlayer(source, Settings.messages.antiCheat)
+            return false
+        end
 
-            local name = args[1]
-            local value = args[2]
+        for name, value in pairs(values) do
             if player[name] ~= clientPlayer[name] then
                 DropPlayer(source, Settings.messages.antiCheat)
                 return false
             end
-
-        else
-
-            return false
-
         end
-        -- End Anti Cheat --
 
-        player:Set(...)
+    elseif countArgs == 2 then
+
+        local name = args[1]
+        local value = args[2]
+
+        if values.uniqueCode ~= player.uniqueCode then
+            DropPlayer(source, Settings.messages.antiCheat)
+            return false
+        end
+
+        if player[name] ~= clientPlayer[name] then
+            DropPlayer(source, Settings.messages.antiCheat)
+            return false
+        end
+
+    else
+
+        return false
+
     end
+    -- End Anti Cheat --
+
+    player:Set(...)
 
 end)
 
@@ -238,18 +249,27 @@ end)
 -- Save Player
 --
 RegisterServerEvent("ft_player:SavePlayer")
-AddEventHandler('ft_player:SavePlayer', function(...)
+AddEventHandler('ft_player:SavePlayer', function(clientPlayer, ...)
 
     local source = source
-    if Settings.system.savePlayerClient == false then
+
+    -- Anti cheat --
+    if not PlayerExist(source) or Settings.system.savePlayerClient == false then
         DropPlayer(source, Settings.messages.antiCheat)
         return false
     end
+    -- End Anti cheat --
 
-    if PlayerExist(source) then
-        local player = Players[source]
-        player:Save(...)
+    local player = Players[source]
+
+    -- Anti cheat 2 --
+    if player.uniqueCode ~= clientPlayer then
+        DropPlayer(source, Settings.messages.antiCheat)
+        return false
     end
+    -- End Anti cheat 2 --
+
+    player:Save(...)
 
 end)
 

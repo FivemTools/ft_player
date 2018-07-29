@@ -15,6 +15,7 @@ function GetPlayer(...)
     local args = {...}
     local count = #args
     local data = exports.ft_libs:Clone(Player)
+    data.uniqueCode = nil
 
     if count == 1 and type(args[1]) == "table" then
 
