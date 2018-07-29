@@ -8,6 +8,9 @@
 Settings = {
     system = {
         identifier = "steam",
+        database = "player",
+        setPlayerClient = false,
+        savePlayerClient = false,
     },
     messages = {
         playerNotFound =  "Please contact administrators (player init error)",

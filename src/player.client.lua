@@ -39,7 +39,9 @@ end
 --
 function SetPlayer(...)
 
-    TriggerServerEvent('ft_player:SetPlayer', Player, ...)
+    if Settings.system.setPlayerClient == true then
+        TriggerServerEvent('ft_player:SetPlayer', Player, ...)
+    end
 
 end
 
@@ -48,7 +50,9 @@ end
 --
 function SavePlayer(...)
 
-    TriggerServerEvent('ft_player:SavePlayer', ...)
+    if Settings.system.savePlayerClient == true then
+        TriggerServerEvent('ft_player:SavePlayer', ...)
+    end
 
 end
 

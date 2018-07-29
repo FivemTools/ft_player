@@ -193,6 +193,11 @@ RegisterServerEvent("ft_player:SetPlayer")
 AddEventHandler('ft_player:SetPlayer', function(clientPlayer, ...)
 
     local source = source
+    if Settings.system.savePlayerClient == false then
+        DropPlayer(source, Settings.messages.antiCheat)
+        return false
+    end
+
     if PlayerExist(source) then
         local player = Players[source]
 
@@ -236,6 +241,11 @@ RegisterServerEvent("ft_player:SavePlayer")
 AddEventHandler('ft_player:SavePlayer', function(...)
 
     local source = source
+    if Settings.system.savePlayerClient == false then
+        DropPlayer(source, Settings.messages.antiCheat)
+        return false
+    end
+
     if PlayerExist(source) then
         local player = Players[source]
         player:Save(...)
