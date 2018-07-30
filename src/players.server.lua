@@ -324,7 +324,7 @@ AddEventHandler('ft_libs:OnClientReady', function()
     TriggerEvent("ft_player:OnPlayerReadyToJoin", source)
 
     -- Debug values
-    -- exports.ft_libs:DebugPrint(Players, "FT_PLAYER Players list")
+    exports.ft_libs:DebugPrint(Players, "FT_PLAYER Players list")
 
 end)
 

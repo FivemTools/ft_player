@@ -119,7 +119,7 @@ end
 function player.new(data)
 
     local self = data
-    self.uniqueCode = exports.ft_libs:GetRandomString(255)
+    self.uniqueCode = exports.ft_libs:GetRandomString(50)
     setmetatable(self, { __index = Player })
     return self
 
