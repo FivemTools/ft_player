@@ -3,8 +3,8 @@
 ### Prerequisites
 
 ```
-ft_libs last 1.0 or more
-ft_database 1.0 or more
+ft_libs last 1.1 or more
+ft_database 1.1 or more
 ```
 
 ### Installing
