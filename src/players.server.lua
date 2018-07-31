@@ -6,6 +6,8 @@
 --
 
 Players = {}
+ConnectingPlayers = {}
+PlayerConnectingCallback = {}
 PlayerDropCallback = {}
 PlayerCreateCallback = {}
 
@@ -18,24 +20,6 @@ function PlayerExist(source)
         return false
     end
     return true
-
-end
-
---
--- Add Plays in player list
---
-function AddPlayer(source, player)
-
-    Players[source] = player
-
-end
-
---
--- Remove Plays in player list
---
-function RemovePlayer(source)
-
-    Players[source] = nil
 
 end
 
@@ -168,6 +152,16 @@ function CreatePlayer(identifier)
 
 end
 
+
+--
+-- Add callback on player drop
+--
+function AddPlayerConnectingCallback(callback)
+
+    table.insert(PlayerConnectingCallback, callback)
+
+end
+
 --
 -- Add callback on player drop
 --
@@ -286,28 +280,20 @@ AddEventHandler('ft_libs:OnClientReady', function()
 
         local identifier = GetIdentifier(source)
         if identifier ~= false then
-            player = GetPlayerFromIdentifier(identifier)
-            if player == false then
-                CreatePlayer(identifier) -- Create player in db
-                player = GetPlayerFromIdentifier(identifier) -- Select player in db
-                if player == false then
-                    DropPlayer(source, Settings.messages.playerNotFound)
-                    return false
-                end
 
-                for _, callback in pairs(PlayerCreateCallback) do
-                    callback(player)
-                end
+            if ConnectingPlayers[identifier] == nil then
+                DropPlayer(source, Settings.messages.playerNotFound)
+                return false
             end
 
-            player.source = source
-            AddPlayer(source, player)
+            Players[source] = ConnectingPlayers[identifier]
+            ConnectingPlayers[identifier] = nil
 
         else
 
-            if Settings.identifier == "steam" then
+            if Settings.system.identifier == "steam" then
                 DropPlayer(source, Settings.messages.steamNotFound)
-            elseif Settings.identifier == "ip" then
+            elseif Settings.system.identifier == "ip" then
                 DropPlayer(source, Settings.messages.ipNotFound)
             end
             return false
@@ -317,7 +303,7 @@ AddEventHandler('ft_libs:OnClientReady', function()
     end
 
     -- Send to client
-    TriggerClientEvent("ft_player:SetPlayer", source, player)
+    TriggerClientEvent("ft_player:SetPlayer", source, Players[source])
 
     -- Send OnPlayerReadyToJoin event
     TriggerClientEvent("ft_player:OnPlayerReadyToJoin", source)
@@ -329,11 +315,63 @@ AddEventHandler('ft_libs:OnClientReady', function()
 end)
 
 --
+-- Envent
+--
+AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
+
+    deferrals.defer()
+
+    local source = source
+    local player = {}
+    local identifier = GetIdentifier(source)
+    if identifier ~= false then
+
+        player = GetPlayerFromIdentifier(identifier)
+        if player == false then
+            CreatePlayer(identifier) -- Create player in db
+            player = GetPlayerFromIdentifier(identifier) -- Select player in db
+            if player == false then
+                deferrals.done(Settings.messages.playerNotFound)
+            end
+
+            for _, callback in pairs(PlayerCreateCallback) do
+                callback(player)
+            end
+        end
+
+        player.source = source
+        ConnectingPlayers[identifier] = player
+
+    else
+
+        if Settings.system.identifier == "steam" then
+            deferrals.done(Settings.messages.steamNotFound)
+        elseif Settings.system.identifier == "ip" then
+            deferrals.done(Settings.messages.ipNotFound)
+        else
+            deferrals.done("Connecting error !")
+        end
+
+    end
+
+    for _, callback in ipairs(PlayerConnectingCallback) do
+        callback(player, deferrals)
+    end
+
+    deferrals.done()
+
+end)
+
+--
 -- Event before player leave
 --
 AddEventHandler('playerDropped', function()
 
     local source = source
+
+    if ConnectingPlayers[identifier] ~= nil then
+        ConnectingPlayers[identifier] = nil
+    end
 
     -- Remove in player list
     if PlayerExist(source) then
@@ -342,7 +380,7 @@ AddEventHandler('playerDropped', function()
         for _, callback in pairs(PlayerDropCallback) do
             callback(player)
         end
-        RemovePlayer(source)
+        Players[source] = nil
 
     end
 
