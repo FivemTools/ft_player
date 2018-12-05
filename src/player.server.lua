@@ -24,7 +24,7 @@ function Player:Save(...)
         local str_query = ""
         for _, name in pairs(args[1]) do
             if name ~= "id" and name ~= "identifier" then
-                if number ~= 0 then
+                if str_query ~= "" then
                     str_query = str_query .. ", "
                 end
                 str_query = str_query .. tostring(name) .. " = @" .. tostring(name)
