@@ -1,85 +1,53 @@
---
--- @Project: FiveM Tools
--- @Author: Samuelds
--- @License: GNU General Public License v3.0
--- @Source: https://github.com/FivemTools/ft_players
---
+/*
+ * @Project: FiveM Tools
+ * @Author: Samuelds
+ * @License: GNU General Public License v3.0
+ * @Source: https://github.com/FivemTools/ft_players
+*/
 
-Player = {}
+class Player {
 
---
--- Get player atributs
---
-function GetPlayer(...)
+    /**
+     * @param {array} player
+     */
+    constructor(player) {
+        for (const index in player) {
+            this[index] = player[index];
+        }
+    }
 
-    local args = {...}
-    local count = #args
-    local data = exports.ft_libs:Clone(Player)
-    data.uniqueCode = nil
+    /**
+     * @param {array|string} column
+     */
+    save(column) {
+        if (typeof column === "object") {
+            let req = "";
+            const values = [];
+            let name;
 
-    if count == 1 and type(args[1]) == "table" then
+            for (let index in column) {
+                name = column[index];
+                if (req !== "") {
+                    req += ", ";
+                }
+                req += "?? = ?";
+                values.push(name);
+                values.push(this[name]);
+            }
+            values.push(this.id);
+            mysql.execute("UPDATE players SET " + req + " WHERE id = ?", values);
+        } else {
+            mysql.execute("UPDATE players SET ?? = ? WHERE id = ?", [column, this[column], this.id]);
+        }
+    }
 
-        local table = {}
-        for _, name in pairs(args[1]) do
-            table[name] = data[name]
-        end
-        return table
-
-    elseif count == 1 then
-
-        local name = args[1]
-        return data[name]
-
-    end
-    return data
-
-end
-
---
--- Save data in Database
---
-function SetPlayer(...)
-
-    if Settings.system.setPlayerClient == true then
-        TriggerServerEvent('ft_player:SetPlayer', Player, ...)
-    end
-
-end
-
---
--- Save to BDD
---
-function SavePlayer(...)
-
-    if Settings.system.savePlayerClient == true then
-        TriggerServerEvent('ft_player:SavePlayer', ...)
-    end
-
-end
-
---
--- Update Player
---
-RegisterNetEvent("ft_player:SetPlayer")
-AddEventHandler('ft_player:SetPlayer', function(...)
-
-    local args = {...}
-    local count = #args
-
-    if count == 1 and type(args[1]) == "table" then
-
-        for name, value in pairs(args[1]) do
-            Player[name] = value
-        end
-
-    elseif count == 2 then
-
-        local name = args[1]
-        local value = args[2]
-        Player[name] = value
-
-    end
-
-    exports.ft_libs:DebugPrint(Player, "FT_PLAYER SetPlayer")
-
-end)
+    /**
+     *
+     * @param {string} column
+     * @param {object|number|string|boolean} value
+     */
+    set(column, value) {
+        this[column] = value;
+        mysql.execute("UPDATE players SET ?? = ? WHERE id = ?", [column, value, this.id]);
+    }
+}

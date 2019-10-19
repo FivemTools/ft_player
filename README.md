@@ -3,8 +3,7 @@
 ### Prerequisites
 
 ```
-ft_libs last 1.1 or more
-ft_database 1.1 or more
+ft_core last 1.0 or more
 ```
 
 ### Installing
@@ -34,7 +33,7 @@ dependencies {
 
 ### Documentation
 
-[Online](https://fivemtools-player.readme.io/v1.0/)
+[Online](https://fivemtools-player.readme.io/v2.0/)
 
 ## License
 

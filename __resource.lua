@@ -5,47 +5,22 @@
 -- @Source: https://github.com/FivemTools/ft_players
 --
 
+resource_manifest_version '05cfa83c-a124-4cfa-a768-c24a5811d8f9'
+
 dependencies {
-
-  "ft_libs",
-  "ft_database",
-
+    "ghmattimysql",
+    "ft_core",
 }
 
-client_scripts {
+files {
+    -- Client
+    "src/player.client.js",
 
-  "settings.lua",
-  "src/player.client.lua",
-
+    -- Server
+    "src/player.class.js",
+    "src/player.server.js",
 }
 
-server_scripts {
+server_scripts {}
 
-  "settings.lua",
-  "src/player.server.lua",
-  "src/players.server.lua",
-
-}
-
-exports {
-
-    "GetPlayer",
-    "SetPlayer",
-
-}
-
-server_exports {
-
-    "GetPlayerFromIdentifier",
-    "GetPlayerFromServerId",
-    "GetPlayerFromId",
-    "GetIdentifier",
-    "GetPlayers",
-    "PlayerCall",
-    "AddPlayerCreateCallback",
-    "AddPlayerConnectingCallback",
-    "AddPlayerDropCallback",
-    "GetPlayerIsConnectedFormIdentifier",
-    "GetPlayerIsConnectedFormId",
-
-}
+client_scripts {}
