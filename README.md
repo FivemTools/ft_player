@@ -3,6 +3,7 @@
 ### Prerequisites
 
 ```
+ghmattimysql (https://github.com/GHMatti/ghmattimysql)
 ft_core last 1.0 or more
 ```
 
