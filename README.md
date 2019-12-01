@@ -2,39 +2,19 @@
 
 ### Prerequisites
 
-```
-ghmattimysql (https://github.com/GHMatti/ghmattimysql)
-ft_core last 1.0 or more
-```
+* ghmattimysql (https://github.com/GHMatti/ghmattimysql)
+* [Nodejs](https://nodejs.org/)
 
 ### Installing
 
-Put the folder where you want it and add it to the server.cfg file :
-
-Example:
-
 ```
-start ft_player
-```
-
-or put in to dependencies in __resource.lua :
-
-```
-dependency 'ft_player'
-
-or
-
-dependencies {
-  ...
-  'ft_players',
-  ...
-}
-
+TODO
 ```
 
 ### Documentation
 
-[Online](https://fivemtools-player.readme.io/v2.0/)
+- Online : https://ft_player.fivem.tools
+- Local : `docs` directory
 
 ## License
 
