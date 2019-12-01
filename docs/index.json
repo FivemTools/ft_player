@@ -1367,7 +1367,7 @@
   },
   {
     "kind": "index",
-    "content": "# ft_player\r\n\r\n### Prerequisites\r\n\r\n```\r\nghmattimysql (https://github.com/GHMatti/ghmattimysql)\r\nft_core last 1.0 or more\r\n```\r\n\r\n### Installing\r\n\r\nPut the folder where you want it and add it to the server.cfg file :\r\n\r\nExample:\r\n\r\n```\r\nstart ft_player\r\n```\r\n\r\nor put in to dependencies in __resource.lua :\r\n\r\n```\r\ndependency 'ft_player'\r\n\r\nor\r\n\r\ndependencies {\r\n  ...\r\n  'ft_players',\r\n  ...\r\n}\r\n\r\n```\r\n\r\n### Documentation\r\n\r\n[Online](https://fivemtools-player.readme.io/v2.0/)\r\n\r\n## License\r\n\r\nThis project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details\r\n\r\n## Contributors :\r\n\r\n- LH_Lawliet\r\n\r\n",
+    "content": "# ft_player\r\n\r\n### Prerequisites\r\n\r\n* ghmattimysql (https://github.com/GHMatti/ghmattimysql)\r\n* [Nodejs](https://nodejs.org/)\r\n\r\n### Installing\r\n\r\n```\r\nTODO\r\n```\r\n\r\n### Documentation\r\n\r\n- Online : https://ft_player.fivem.tools\r\n- Local : `docs` directory\r\n\r\n## License\r\n\r\nThis project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details\r\n\r\n## Contributors :\r\n\r\n- LH_Lawliet\r\n\r\n",
     "longname": "D:\\Projects\\project-island\\fivem\\resources\\[fivemtools]\\ft_player\\README.md",
     "name": "./README.md",
     "static": true,
@@ -1375,7 +1375,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\r\n  \"name\": \"@fivemtools/ft_player\",\r\n  \"version\": \"2.1.0\",\r\n  \"description\": \"Player Manager for fivem\",\r\n  \"main\": \"src/index.js\",\r\n  \"directories\": {\r\n    \"doc\": \"docs\"\r\n  },\r\n  \"dependencies\": {},\r\n  \"devDependencies\": {\r\n    \"esdoc\": \"^1.1.0\",\r\n    \"esdoc-standard-plugin\": \"^1.0.0\",\r\n    \"esdoc-es7-plugin\": \"^0.0.3\"\r\n  },\r\n  \"scripts\": {\r\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"git+https://github.com/FivemTools/ft_player.git\"\r\n  },\r\n  \"author\": \"fivemtools\",\r\n  \"license\": \"GPL-3.0\",\r\n  \"bugs\": {\r\n    \"url\": \"https://github.com/FivemTools/ft_player/issues\"\r\n  },\r\n  \"homepage\": \"https://ft_player.fivem.tools\",\r\n  \"files\": [\r\n    \"src/**/*\"\r\n  ]\r\n}\r\n",
+    "content": "{\r\n  \"name\": \"@fivemtools/ft_player\",\r\n  \"version\": \"2.1.0\",\r\n  \"description\": \"Player Manager for fivem\",\r\n  \"main\": \"src/index.js\",\r\n  \"directories\": {\r\n    \"doc\": \"docs\"\r\n  },\r\n  \"dependencies\": {},\r\n  \"devDependencies\": {\r\n    \"esdoc\": \"^1.1.0\",\r\n    \"esdoc-standard-plugin\": \"^1.0.0\",\r\n    \"esdoc-es7-plugin\": \"^0.0.3\"\r\n  },\r\n  \"scripts\": {\r\n    \"test\": \"./node_modules/.bin/esdoc\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"git+https://github.com/FivemTools/ft_player.git\"\r\n  },\r\n  \"author\": \"fivemtools\",\r\n  \"license\": \"GPL-3.0\",\r\n  \"bugs\": {\r\n    \"url\": \"https://github.com/FivemTools/ft_player/issues\"\r\n  },\r\n  \"homepage\": \"https://ft_player.fivem.tools\",\r\n  \"files\": [\r\n    \"src/**/*\"\r\n  ]\r\n}\r\n",
     "longname": "D:\\Projects\\project-island\\fivem\\resources\\[fivemtools]\\ft_player\\package.json",
     "name": "package.json",
     "static": true,
