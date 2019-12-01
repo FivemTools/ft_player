@@ -1,0 +1,27 @@
+{
+  "coverage": "65.21%",
+  "expectCount": 23,
+  "actualCount": 15,
+  "files": {
+    "src/player.class.js": {
+      "expectCount": 6,
+      "actualCount": 3,
+      "undocumentLines": [
+        8,
+        15,
+        50
+      ]
+    },
+    "src/player.server.js": {
+      "expectCount": 17,
+      "actualCount": 12,
+      "undocumentLines": [
+        8,
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@fivemtools/ft_player",
+  "version": "2.1.0",
+  "description": "Player Manager for fivem",
+  "main": "src/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "esdoc-es7-plugin": "^0.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FivemTools/ft_player.git"
+  },
+  "author": "fivemtools",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/FivemTools/ft_player/issues"
+  },
+  "homepage": "https://ft_player.fivem.tools",
+  "files": [
+    "src/**/*"
+  ]
+}

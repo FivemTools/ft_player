@@ -17,7 +17,7 @@ let onPlayerLeavingCallback = [];
  * @param {number} source
  * @return {array}
  */
-function GetPlayerIdentifiers(source) {
+export function GetPlayerIdentifiers(source) {
     let identifiers      = [];
     const numIdentifiers = GetNumPlayerIdentifiers(source);
     for (let index = 0; index < numIdentifiers; index++) {
@@ -31,7 +31,7 @@ function GetPlayerIdentifiers(source) {
  * @param {number} source
  * @return {string}
  */
-function GetIdentifier(source) {
+export function GetIdentifier(source) {
     return GetPlayerIdentifiers(source).find(function (index) {
         return index.startsWith(Settings.system.identifier + ":");
     });
@@ -42,7 +42,7 @@ function GetIdentifier(source) {
  * @param {number} source
  * @return {boolean}
  */
-function IsPlayerExist(source) {
+export function IsPlayerExist(source) {
     return playersList[source] !== undefined;
 }
 
@@ -50,7 +50,7 @@ function IsPlayerExist(source) {
  * @description Return playersList
  * @return {object} playersList
  */
-function GetPlayers() {
+export function GetPlayers() {
     return playersList;
 }
 
@@ -59,7 +59,7 @@ function GetPlayers() {
  * @param {string} identifier
  * @return {Player|boolean} player
  */
-function GetOnlinePlayerFormIdentifier(identifier) {
+export function GetOnlinePlayerFormIdentifier(identifier) {
     for (let player in playersList) {
         if (player.identifier === identifier) {
             return player;
@@ -73,7 +73,7 @@ function GetOnlinePlayerFormIdentifier(identifier) {
  * @param {string} source
  * @return {Player|boolean} player
  */
-function GetOnlinePlayerFormSource(source) {
+export function GetOnlinePlayerFormSource(source) {
     if (IsPlayerExist(source)) {
         return playersList[source];
     } else {
@@ -87,7 +87,7 @@ function GetOnlinePlayerFormSource(source) {
  * @param {function} callback
  * @return {Player|boolean} player
  */
-function GetPlayerFormIdentifier(identifier, callback) {
+export function GetPlayerFormIdentifier(identifier, callback) {
     mysql.execute("SELECT * FROM players WHERE identifier = ?", [identifier], function (result) {
         if (result[0] !== undefined) {
             callback(new Player(result[0]));
@@ -103,7 +103,7 @@ function GetPlayerFormIdentifier(identifier, callback) {
  * @param {function} callback
  * @return {Player|boolean} player
  */
-function CreatePlayerFormIdentifier(identifier, callback) {
+export function CreatePlayerFormIdentifier(identifier, callback) {
     mysql.execute("INSERT IGNORE INTO players (`identifier`, `createdAt`) VALUES (?, NOW())", [identifier], function (result) {
         GetPlayerFormId(result.insertId, callback);
     });
@@ -115,7 +115,7 @@ function CreatePlayerFormIdentifier(identifier, callback) {
  * @param {function} callback
  * @return {Player|boolean} player
  */
-function GetPlayerFormId(id, callback) {
+export function GetPlayerFormId(id, callback) {
     mysql.execute("SELECT * FROM players WHERE id = ?", [id], function (result) {
         if (result[0] !== undefined) {
             callback(new Player(result[0]));
@@ -130,7 +130,7 @@ function GetPlayerFormId(id, callback) {
  * @param {function} callback
  * @return {void}
  */
-function onPlayerConnecting(callback) {
+export function onPlayerConnecting(callback) {
     onPlayerConnectingCallback.push(callback);
 }
 
@@ -139,7 +139,7 @@ function onPlayerConnecting(callback) {
  * @param {function} callback
  * @return {void}
  */
-function onPlayerLeaving(callback) {
+export function onPlayerLeaving(callback) {
     onPlayerLeavingCallback.push(callback);
 }
 
@@ -148,7 +148,7 @@ function onPlayerLeaving(callback) {
  * @param {function} callback
  * @return {void}
  */
-function onNewPlayer(callback) {
+export function onNewPlayer(callback) {
     onNewPlayerCallback.push(callback);
 }
 

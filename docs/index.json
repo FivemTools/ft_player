@@ -1,0 +1,1384 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/player.class.js",
+    "content": "/*\r\n * @Project: FiveM Tools\r\n * @Author: Samuelds\r\n * @License: GNU General Public License v3.0\r\n * @Source: https://github.com/FivemTools/ft_players\r\n*/\r\n\r\nexport class Player {\r\n\r\n    /**\r\n     * @param {array} player\r\n     */\r\n    constructor(player) {\r\n        for (const index in player) {\r\n            this[index] = player[index];\r\n        }\r\n    }\r\n\r\n    /**\r\n     * @param {array|string} column\r\n     */\r\n    save(column) {\r\n        if (typeof column === \"object\") {\r\n            let req = \"\";\r\n            const values = [];\r\n            let name;\r\n\r\n            for (let index in column) {\r\n                name = column[index];\r\n                if (req !== \"\") {\r\n                    req += \", \";\r\n                }\r\n                req += \"?? = ?\";\r\n                values.push(name);\r\n                values.push(this[name]);\r\n            }\r\n            values.push(this.id);\r\n            mysql.execute(\"UPDATE players SET \" + req + \" WHERE id = ?\", values);\r\n        } else {\r\n            mysql.execute(\"UPDATE players SET ?? = ? WHERE id = ?\", [column, this[column], this.id]);\r\n        }\r\n    }\r\n\r\n    /**\r\n     *\r\n     * @param {string} column\r\n     * @param {object|number|string|boolean} value\r\n     */\r\n    set(column, value) {\r\n        this[column] = value;\r\n        mysql.execute(\"UPDATE players SET ?? = ? WHERE id = ?\", [column, value, this.id]);\r\n    }\r\n}\r\n",
+    "static": true,
+    "longname": "D:/Projects/project-island/fivem/resources/[fivemtools]/ft_player/src/player.class.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "Player",
+    "memberof": "src/player.class.js",
+    "static": true,
+    "longname": "src/player.class.js~Player",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.class.js",
+    "importStyle": "{Player}",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/player.class.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/player.class.js~Player#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 13,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "player",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "[index]",
+    "memberof": "src/player.class.js~Player",
+    "static": false,
+    "longname": "src/player.class.js~Player#[index]",
+    "access": "public",
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "method",
+    "name": "save",
+    "memberof": "src/player.class.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/player.class.js~Player#save",
+    "access": "public",
+    "description": "",
+    "lineNumber": 22,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "array",
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 53,
+    "kind": "method",
+    "name": "set",
+    "memberof": "src/player.class.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/player.class.js~Player#set",
+    "access": "public",
+    "description": "",
+    "lineNumber": 49,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "number",
+          "string",
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 54,
+    "kind": "member",
+    "name": "[column]",
+    "memberof": "src/player.class.js~Player",
+    "static": false,
+    "longname": "src/player.class.js~Player#[column]",
+    "access": "public",
+    "description": null,
+    "lineNumber": 50,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "file",
+    "name": "src/player.client.js",
+    "content": "/*\r\n * @Project: FiveM Tools\r\n * @Author: Samuelds\r\n * @License: GNU General Public License v3.0\r\n * @Source: https://github.com/FivemTools/ft_players\r\n*/\r\n\r\nOnClientReady(function () {\r\n    TriggerServerEvent(\"ft_player:ClientReady\");\r\n});",
+    "static": true,
+    "longname": "D:/Projects/project-island/fivem/resources/[fivemtools]/ft_player/src/player.client.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 56,
+    "kind": "file",
+    "name": "src/player.server.js",
+    "content": "/*\r\n * @Project: FiveM Tools\r\n * @Author: Samuelds\r\n * @License: GNU General Public License v3.0\r\n * @Source: https://github.com/FivemTools/ft_players\r\n*/\r\n\r\nconst mysql = exports.ghmattimysql;\r\n\r\nlet playersList = {};\r\nlet onNewPlayerCallback = [];\r\nlet onPlayerConnectingCallback = [];\r\nlet onPlayerLeavingCallback = [];\r\n\r\n/**\r\n * @description Return player Identifiers\r\n * @param {number} source\r\n * @return {array}\r\n */\r\nexport function GetPlayerIdentifiers(source) {\r\n    let identifiers      = [];\r\n    const numIdentifiers = GetNumPlayerIdentifiers(source);\r\n    for (let index = 0; index < numIdentifiers; index++) {\r\n        identifiers[index] = GetPlayerIdentifier(source, index);\r\n    }\r\n    return identifiers;\r\n}\r\n\r\n/**\r\n * @description Return player Identifier\r\n * @param {number} source\r\n * @return {string}\r\n */\r\nexport function GetIdentifier(source) {\r\n    return GetPlayerIdentifiers(source).find(function (index) {\r\n        return index.startsWith(Settings.system.identifier + \":\");\r\n    });\r\n}\r\n\r\n/**\r\n * @description Check if is in the list player\r\n * @param {number} source\r\n * @return {boolean}\r\n */\r\nexport function IsPlayerExist(source) {\r\n    return playersList[source] !== undefined;\r\n}\r\n\r\n/**\r\n * @description Return playersList\r\n * @return {object} playersList\r\n */\r\nexport function GetPlayers() {\r\n    return playersList;\r\n}\r\n\r\n/**\r\n * @description Return player connected by identifier\r\n * @param {string} identifier\r\n * @return {Player|boolean} player\r\n */\r\nexport function GetOnlinePlayerFormIdentifier(identifier) {\r\n    for (let player in playersList) {\r\n        if (player.identifier === identifier) {\r\n            return player;\r\n        }\r\n    }\r\n    return false;\r\n}\r\n\r\n/**\r\n * @description Return player connected by server id\r\n * @param {string} source\r\n * @return {Player|boolean} player\r\n */\r\nexport function GetOnlinePlayerFormSource(source) {\r\n    if (IsPlayerExist(source)) {\r\n        return playersList[source];\r\n    } else {\r\n        return false;\r\n    }\r\n}\r\n\r\n/**\r\n * @description Return player on database by identifier\r\n * @param {string} identifier\r\n * @param {function} callback\r\n * @return {Player|boolean} player\r\n */\r\nexport function GetPlayerFormIdentifier(identifier, callback) {\r\n    mysql.execute(\"SELECT * FROM players WHERE identifier = ?\", [identifier], function (result) {\r\n        if (result[0] !== undefined) {\r\n            callback(new Player(result[0]));\r\n        } else {\r\n            callback(false);\r\n        }\r\n    });\r\n}\r\n\r\n/**\r\n * @description Return player on database by identifier\r\n * @param {string} identifier\r\n * @param {function} callback\r\n * @return {Player|boolean} player\r\n */\r\nexport function CreatePlayerFormIdentifier(identifier, callback) {\r\n    mysql.execute(\"INSERT IGNORE INTO players (`identifier`, `createdAt`) VALUES (?, NOW())\", [identifier], function (result) {\r\n        GetPlayerFormId(result.insertId, callback);\r\n    });\r\n}\r\n\r\n/**\r\n * @description Return player on database by id on database\r\n * @param {number} id\r\n * @param {function} callback\r\n * @return {Player|boolean} player\r\n */\r\nexport function GetPlayerFormId(id, callback) {\r\n    mysql.execute(\"SELECT * FROM players WHERE id = ?\", [id], function (result) {\r\n        if (result[0] !== undefined) {\r\n            callback(new Player(result[0]));\r\n        } else {\r\n            callback(false);\r\n        }\r\n    });\r\n}\r\n\r\n/**\r\n * @description Add execute function on player connecting\r\n * @param {function} callback\r\n * @return {void}\r\n */\r\nexport function onPlayerConnecting(callback) {\r\n    onPlayerConnectingCallback.push(callback);\r\n}\r\n\r\n/**\r\n * @description Add execute function on player leaving\r\n * @param {function} callback\r\n * @return {void}\r\n */\r\nexport function onPlayerLeaving(callback) {\r\n    onPlayerLeavingCallback.push(callback);\r\n}\r\n\r\n/**\r\n * @description Add execute function on new player\r\n * @param {function} callback\r\n * @return {void}\r\n */\r\nexport function onNewPlayer(callback) {\r\n    onNewPlayerCallback.push(callback);\r\n}\r\n\r\n/**\r\n * @description player connecting event\r\n */\r\nAddEventHandler(\"playerConnecting\", function(name, setKickReason, deferrals) {\r\n    deferrals.defer();\r\n    deferrals.presentCard(Settings.messages.waitCard);\r\n\r\n    const identifier = GetIdentifier(source);\r\n    if (identifier === undefined) {\r\n        deferrals.done(Settings.messages.noIdentifier);\r\n    }\r\n\r\n    GetPlayerFormIdentifier(identifier, function (player) {\r\n        if (player === false) {\r\n            CreatePlayerFormIdentifier(identifier, function (player) {\r\n                if (player === false) {\r\n                    deferrals.done(Settings.messages.playerNotFound);\r\n                } else if (onNewPlayerCallback.length > 0) {\r\n                    for (let index in onNewPlayerCallback) {\r\n                        onNewPlayerCallback[index](player);\r\n                        if (index == onNewPlayerCallback.length -1) {\r\n                            playersList[identifier] = player;\r\n                            deferrals.done();\r\n                        }\r\n                    }\r\n                } else {\r\n                    playersList[identifier] = player;\r\n                    deferrals.done();\r\n                }\r\n            });\r\n        } else {\r\n            playersList[identifier] = player;\r\n            deferrals.done();\r\n        }\r\n    });\r\n});\r\n\r\n/**\r\n * @description player leave event\r\n */\r\nAddEventHandler(\"playerDropped\", function() {\r\n    if (playersList[source] !== undefined) {\r\n        let player = playersList[source];\r\n        for (let index in onPlayerLeavingCallback) {\r\n            onPlayerLeavingCallback[index](player);\r\n            if (index == onPlayerLeavingCallback.length -1) {\r\n                delete playersList[source];\r\n            }\r\n        }\r\n    }\r\n    const identifier = GetIdentifier(source);\r\n    if (playersList[identifier] !== undefined) {\r\n        delete playersList[identifier];\r\n    }\r\n});\r\n\r\n/**\r\n * @description player is ready\r\n */\r\nRegisterNetEvent(\"ft_player:ClientReady\");\r\nAddEventHandler(\"ft_player:ClientReady\", function() {\r\n    const identifier = GetIdentifier(source);\r\n    playersList[source] = playersList[identifier];\r\n    delete playersList[identifier];\r\n});",
+    "static": true,
+    "longname": "D:/Projects/project-island/fivem/resources/[fivemtools]/ft_player/src/player.server.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 57,
+    "kind": "variable",
+    "name": "mysql",
+    "memberof": "src/player.server.js",
+    "static": true,
+    "longname": "src/player.server.js~mysql",
+    "access": "public",
+    "export": false,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "variable",
+    "name": "playersList",
+    "memberof": "src/player.server.js",
+    "static": true,
+    "longname": "src/player.server.js~playersList",
+    "access": "public",
+    "export": false,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{}"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "variable",
+    "name": "onNewPlayerCallback",
+    "memberof": "src/player.server.js",
+    "static": true,
+    "longname": "src/player.server.js~onNewPlayerCallback",
+    "access": "public",
+    "export": false,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "variable",
+    "name": "onPlayerConnectingCallback",
+    "memberof": "src/player.server.js",
+    "static": true,
+    "longname": "src/player.server.js~onPlayerConnectingCallback",
+    "access": "public",
+    "export": false,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "variable",
+    "name": "onPlayerLeavingCallback",
+    "memberof": "src/player.server.js",
+    "static": true,
+    "longname": "src/player.server.js~onPlayerLeavingCallback",
+    "access": "public",
+    "export": false,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "function",
+    "name": "GetPlayerIdentifiers",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~GetPlayerIdentifiers",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{GetPlayerIdentifiers}",
+    "description": "",
+    "lineNumber": 20,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Return player Identifiers"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "source",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "array"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "name": "GetIdentifier",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~GetIdentifier",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{GetIdentifier}",
+    "description": "",
+    "lineNumber": 34,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Return player Identifier"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "source",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "function",
+    "name": "IsPlayerExist",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~IsPlayerExist",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{IsPlayerExist}",
+    "description": "",
+    "lineNumber": 45,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Check if is in the list player"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "source",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "function",
+    "name": "GetPlayers",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~GetPlayers",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{GetPlayers}",
+    "description": "",
+    "lineNumber": 53,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Return playersList"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "playersList"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 66,
+    "kind": "function",
+    "name": "GetOnlinePlayerFormIdentifier",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~GetOnlinePlayerFormIdentifier",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{GetOnlinePlayerFormIdentifier}",
+    "description": "",
+    "lineNumber": 62,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Return player connected by identifier"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "identifier",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Player",
+        "boolean"
+      ],
+      "spread": false,
+      "description": "player"
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "function",
+    "name": "GetOnlinePlayerFormSource",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~GetOnlinePlayerFormSource",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{GetOnlinePlayerFormSource}",
+    "description": "",
+    "lineNumber": 76,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Return player connected by server id"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "source",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Player",
+        "boolean"
+      ],
+      "spread": false,
+      "description": "player"
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "function",
+    "name": "GetPlayerFormIdentifier",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~GetPlayerFormIdentifier",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{GetPlayerFormIdentifier}",
+    "description": "",
+    "lineNumber": 90,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Return player on database by identifier"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "identifier",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Player",
+        "boolean"
+      ],
+      "spread": false,
+      "description": "player"
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "function",
+    "name": "CreatePlayerFormIdentifier",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~CreatePlayerFormIdentifier",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{CreatePlayerFormIdentifier}",
+    "description": "",
+    "lineNumber": 106,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Return player on database by identifier"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "identifier",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Player",
+        "boolean"
+      ],
+      "spread": false,
+      "description": "player"
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "function",
+    "name": "GetPlayerFormId",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~GetPlayerFormId",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{GetPlayerFormId}",
+    "description": "",
+    "lineNumber": 118,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Return player on database by id on database"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "id",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Player",
+        "boolean"
+      ],
+      "spread": false,
+      "description": "player"
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "function",
+    "name": "onPlayerConnecting",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~onPlayerConnecting",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{onPlayerConnecting}",
+    "description": "",
+    "lineNumber": 133,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Add execute function on player connecting"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 72,
+    "kind": "function",
+    "name": "onPlayerLeaving",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~onPlayerLeaving",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{onPlayerLeaving}",
+    "description": "",
+    "lineNumber": 142,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Add execute function on player leaving"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "function",
+    "name": "onNewPlayer",
+    "memberof": "src/player.server.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/player.server.js~onNewPlayer",
+    "access": "public",
+    "export": true,
+    "importPath": "@fivemtools/ft_player/src/player.server.js",
+    "importStyle": "{onNewPlayer}",
+    "description": "",
+    "lineNumber": 151,
+    "unknown": [
+      {
+        "tagName": "@description",
+        "tagValue": "Add execute function on new player"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "callback",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "kind": "index",
+    "content": "# ft_player\r\n\r\n### Prerequisites\r\n\r\n```\r\nghmattimysql (https://github.com/GHMatti/ghmattimysql)\r\nft_core last 1.0 or more\r\n```\r\n\r\n### Installing\r\n\r\nPut the folder where you want it and add it to the server.cfg file :\r\n\r\nExample:\r\n\r\n```\r\nstart ft_player\r\n```\r\n\r\nor put in to dependencies in __resource.lua :\r\n\r\n```\r\ndependency 'ft_player'\r\n\r\nor\r\n\r\ndependencies {\r\n  ...\r\n  'ft_players',\r\n  ...\r\n}\r\n\r\n```\r\n\r\n### Documentation\r\n\r\n[Online](https://fivemtools-player.readme.io/v2.0/)\r\n\r\n## License\r\n\r\nThis project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details\r\n\r\n## Contributors :\r\n\r\n- LH_Lawliet\r\n\r\n",
+    "longname": "D:\\Projects\\project-island\\fivem\\resources\\[fivemtools]\\ft_player\\README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\r\n  \"name\": \"@fivemtools/ft_player\",\r\n  \"version\": \"2.1.0\",\r\n  \"description\": \"Player Manager for fivem\",\r\n  \"main\": \"src/index.js\",\r\n  \"directories\": {\r\n    \"doc\": \"docs\"\r\n  },\r\n  \"dependencies\": {},\r\n  \"devDependencies\": {\r\n    \"esdoc\": \"^1.1.0\",\r\n    \"esdoc-standard-plugin\": \"^1.0.0\",\r\n    \"esdoc-es7-plugin\": \"^0.0.3\"\r\n  },\r\n  \"scripts\": {\r\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"git+https://github.com/FivemTools/ft_player.git\"\r\n  },\r\n  \"author\": \"fivemtools\",\r\n  \"license\": \"GPL-3.0\",\r\n  \"bugs\": {\r\n    \"url\": \"https://github.com/FivemTools/ft_player/issues\"\r\n  },\r\n  \"homepage\": \"https://ft_player.fivem.tools\",\r\n  \"files\": [\r\n    \"src/**/*\"\r\n  ]\r\n}\r\n",
+    "longname": "D:\\Projects\\project-island\\fivem\\resources\\[fivemtools]\\ft_player\\package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]

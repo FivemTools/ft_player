@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/player.class.js | @fivemtools/ft_player</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Player Manager for fivem"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@fivemtools/ft_player"><meta property="twitter:description" content="Player Manager for fivem"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/FivemTools/ft_player"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/player.class.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-CreatePlayerFormIdentifier">CreatePlayerFormIdentifier</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetIdentifier">GetIdentifier</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetOnlinePlayerFormIdentifier">GetOnlinePlayerFormIdentifier</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetOnlinePlayerFormSource">GetOnlinePlayerFormSource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetPlayerFormId">GetPlayerFormId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetPlayerFormIdentifier">GetPlayerFormIdentifier</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetPlayerIdentifiers">GetPlayerIdentifiers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetPlayers">GetPlayers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-IsPlayerExist">IsPlayerExist</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-onNewPlayer">onNewPlayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-onPlayerConnecting">onPlayerConnecting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-onPlayerLeaving">onPlayerLeaving</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mysql">mysql</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-onNewPlayerCallback">onNewPlayerCallback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-onPlayerConnectingCallback">onPlayerConnectingCallback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-onPlayerLeavingCallback">onPlayerLeavingCallback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-playersList">playersList</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/player.class.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
+ * @Project: FiveM Tools
+ * @Author: Samuelds
+ * @License: GNU General Public License v3.0
+ * @Source: https://github.com/FivemTools/ft_players
+*/
+
+export class Player {
+
+    /**
+     * @param {array} player
+     */
+    constructor(player) {
+        for (const index in player) {
+            this[index] = player[index];
+        }
+    }
+
+    /**
+     * @param {array|string} column
+     */
+    save(column) {
+        if (typeof column === &quot;object&quot;) {
+            let req = &quot;&quot;;
+            const values = [];
+            let name;
+
+            for (let index in column) {
+                name = column[index];
+                if (req !== &quot;&quot;) {
+                    req += &quot;, &quot;;
+                }
+                req += &quot;?? = ?&quot;;
+                values.push(name);
+                values.push(this[name]);
+            }
+            values.push(this.id);
+            mysql.execute(&quot;UPDATE players SET &quot; + req + &quot; WHERE id = ?&quot;, values);
+        } else {
+            mysql.execute(&quot;UPDATE players SET ?? = ? WHERE id = ?&quot;, [column, this[column], this.id]);
+        }
+    }
+
+    /**
+     *
+     * @param {string} column
+     * @param {object|number|string|boolean} value
+     */
+    set(column, value) {
+        this[column] = value;
+        mysql.execute(&quot;UPDATE players SET ?? = ? WHERE id = ?&quot;, [column, value, this.id]);
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

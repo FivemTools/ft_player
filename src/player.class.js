@@ -5,7 +5,7 @@
  * @Source: https://github.com/FivemTools/ft_players
 */
 
-class Player {
+export class Player {
 
     /**
      * @param {array} player

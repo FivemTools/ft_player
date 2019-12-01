@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/player.server.js | @fivemtools/ft_player</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Player Manager for fivem"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@fivemtools/ft_player"><meta property="twitter:description" content="Player Manager for fivem"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/FivemTools/ft_player"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/player.class.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-CreatePlayerFormIdentifier">CreatePlayerFormIdentifier</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetIdentifier">GetIdentifier</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetOnlinePlayerFormIdentifier">GetOnlinePlayerFormIdentifier</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetOnlinePlayerFormSource">GetOnlinePlayerFormSource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetPlayerFormId">GetPlayerFormId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetPlayerFormIdentifier">GetPlayerFormIdentifier</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetPlayerIdentifiers">GetPlayerIdentifiers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-GetPlayers">GetPlayers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-IsPlayerExist">IsPlayerExist</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-onNewPlayer">onNewPlayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-onPlayerConnecting">onPlayerConnecting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-onPlayerLeaving">onPlayerLeaving</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-mysql">mysql</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-onNewPlayerCallback">onNewPlayerCallback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-onPlayerConnectingCallback">onPlayerConnectingCallback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-onPlayerLeavingCallback">onPlayerLeavingCallback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-playersList">playersList</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/player.server.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
+ * @Project: FiveM Tools
+ * @Author: Samuelds
+ * @License: GNU General Public License v3.0
+ * @Source: https://github.com/FivemTools/ft_players
+*/
+
+const mysql = exports.ghmattimysql;
+
+let playersList = {};
+let onNewPlayerCallback = [];
+let onPlayerConnectingCallback = [];
+let onPlayerLeavingCallback = [];
+
+/**
+ * @description Return player Identifiers
+ * @param {number} source
+ * @return {array}
+ */
+export function GetPlayerIdentifiers(source) {
+    let identifiers      = [];
+    const numIdentifiers = GetNumPlayerIdentifiers(source);
+    for (let index = 0; index &lt; numIdentifiers; index++) {
+        identifiers[index] = GetPlayerIdentifier(source, index);
+    }
+    return identifiers;
+}
+
+/**
+ * @description Return player Identifier
+ * @param {number} source
+ * @return {string}
+ */
+export function GetIdentifier(source) {
+    return GetPlayerIdentifiers(source).find(function (index) {
+        return index.startsWith(Settings.system.identifier + &quot;:&quot;);
+    });
+}
+
+/**
+ * @description Check if is in the list player
+ * @param {number} source
+ * @return {boolean}
+ */
+export function IsPlayerExist(source) {
+    return playersList[source] !== undefined;
+}
+
+/**
+ * @description Return playersList
+ * @return {object} playersList
+ */
+export function GetPlayers() {
+    return playersList;
+}
+
+/**
+ * @description Return player connected by identifier
+ * @param {string} identifier
+ * @return {Player|boolean} player
+ */
+export function GetOnlinePlayerFormIdentifier(identifier) {
+    for (let player in playersList) {
+        if (player.identifier === identifier) {
+            return player;
+        }
+    }
+    return false;
+}
+
+/**
+ * @description Return player connected by server id
+ * @param {string} source
+ * @return {Player|boolean} player
+ */
+export function GetOnlinePlayerFormSource(source) {
+    if (IsPlayerExist(source)) {
+        return playersList[source];
+    } else {
+        return false;
+    }
+}
+
+/**
+ * @description Return player on database by identifier
+ * @param {string} identifier
+ * @param {function} callback
+ * @return {Player|boolean} player
+ */
+export function GetPlayerFormIdentifier(identifier, callback) {
+    mysql.execute(&quot;SELECT * FROM players WHERE identifier = ?&quot;, [identifier], function (result) {
+        if (result[0] !== undefined) {
+            callback(new Player(result[0]));
+        } else {
+            callback(false);
+        }
+    });
+}
+
+/**
+ * @description Return player on database by identifier
+ * @param {string} identifier
+ * @param {function} callback
+ * @return {Player|boolean} player
+ */
+export function CreatePlayerFormIdentifier(identifier, callback) {
+    mysql.execute(&quot;INSERT IGNORE INTO players (`identifier`, `createdAt`) VALUES (?, NOW())&quot;, [identifier], function (result) {
+        GetPlayerFormId(result.insertId, callback);
+    });
+}
+
+/**
+ * @description Return player on database by id on database
+ * @param {number} id
+ * @param {function} callback
+ * @return {Player|boolean} player
+ */
+export function GetPlayerFormId(id, callback) {
+    mysql.execute(&quot;SELECT * FROM players WHERE id = ?&quot;, [id], function (result) {
+        if (result[0] !== undefined) {
+            callback(new Player(result[0]));
+        } else {
+            callback(false);
+        }
+    });
+}
+
+/**
+ * @description Add execute function on player connecting
+ * @param {function} callback
+ * @return {void}
+ */
+export function onPlayerConnecting(callback) {
+    onPlayerConnectingCallback.push(callback);
+}
+
+/**
+ * @description Add execute function on player leaving
+ * @param {function} callback
+ * @return {void}
+ */
+export function onPlayerLeaving(callback) {
+    onPlayerLeavingCallback.push(callback);
+}
+
+/**
+ * @description Add execute function on new player
+ * @param {function} callback
+ * @return {void}
+ */
+export function onNewPlayer(callback) {
+    onNewPlayerCallback.push(callback);
+}
+
+/**
+ * @description player connecting event
+ */
+AddEventHandler(&quot;playerConnecting&quot;, function(name, setKickReason, deferrals) {
+    deferrals.defer();
+    deferrals.presentCard(Settings.messages.waitCard);
+
+    const identifier = GetIdentifier(source);
+    if (identifier === undefined) {
+        deferrals.done(Settings.messages.noIdentifier);
+    }
+
+    GetPlayerFormIdentifier(identifier, function (player) {
+        if (player === false) {
+            CreatePlayerFormIdentifier(identifier, function (player) {
+                if (player === false) {
+                    deferrals.done(Settings.messages.playerNotFound);
+                } else if (onNewPlayerCallback.length &gt; 0) {
+                    for (let index in onNewPlayerCallback) {
+                        onNewPlayerCallback[index](player);
+                        if (index == onNewPlayerCallback.length -1) {
+                            playersList[identifier] = player;
+                            deferrals.done();
+                        }
+                    }
+                } else {
+                    playersList[identifier] = player;
+                    deferrals.done();
+                }
+            });
+        } else {
+            playersList[identifier] = player;
+            deferrals.done();
+        }
+    });
+});
+
+/**
+ * @description player leave event
+ */
+AddEventHandler(&quot;playerDropped&quot;, function() {
+    if (playersList[source] !== undefined) {
+        let player = playersList[source];
+        for (let index in onPlayerLeavingCallback) {
+            onPlayerLeavingCallback[index](player);
+            if (index == onPlayerLeavingCallback.length -1) {
+                delete playersList[source];
+            }
+        }
+    }
+    const identifier = GetIdentifier(source);
+    if (playersList[identifier] !== undefined) {
+        delete playersList[identifier];
+    }
+});
+
+/**
+ * @description player is ready
+ */
+RegisterNetEvent(&quot;ft_player:ClientReady&quot;);
+AddEventHandler(&quot;ft_player:ClientReady&quot;, function() {
+    const identifier = GetIdentifier(source);
+    playersList[source] = playersList[identifier];
+    delete playersList[identifier];
+});</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
