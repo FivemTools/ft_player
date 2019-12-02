@@ -1,0 +1,13 @@
+{
+  "name": "ft_exemple",
+  "version": "1.0.0",
+  "description": "Example for ft_player",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Fivemtools",
+  "license": "ISC",
+  "dependencies": {
+    "@fivemtools/ft_core": "^1.*",
+    "@fivemtools/ft_player": "^2.*"
+  }
+}
