@@ -9,8 +9,15 @@
   "dependencies": {},
   "devDependencies": {
     "esdoc": "^1.1.0",
+    "esdoc-es7-plugin": "^0.0.3",
     "esdoc-standard-plugin": "^1.0.0",
-    "esdoc-es7-plugin": "^0.0.3"
+    "glob": "^7.1.6",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "build-client": "webpack --mode production --config client.config.js",
+    "build-server": "webpack --mode production --config server.config.js"
   },
   "repository": {
     "type": "git",
