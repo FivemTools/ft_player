@@ -18,7 +18,7 @@ let onPlayerLeavingCallback = [];
  * @return {array}
  */
 export function GetPlayerIdentifiers(source) {
-    let identifiers      = [];
+    let identifiers = [];
     const numIdentifiers = GetNumPlayerIdentifiers(source);
     for (let index = 0; index < numIdentifiers; index++) {
         identifiers[index] = GetPlayerIdentifier(source, index);
@@ -130,8 +130,28 @@ export function GetPlayerFormId(id, callback) {
  * @param {function} callback
  * @return {void}
  */
-export function onPlayerConnecting(callback) {
+export function OnPlayerConnecting(callback) {
     onPlayerConnectingCallback.push(callback);
+}
+
+/**
+ * @description Run new player callback
+ * @param {Player} player
+ * @param {function} callback
+ * @return {void}
+ */
+function RunPlayerConnecting(player, callback) {
+    const count = onPlayerConnectingCallback.length;
+    if (count > 0) {
+        for (let index in onPlayerConnectingCallback) {
+            onPlayerConnectingCallback[index](player);
+            if (index == count - 1) {
+                callback();
+            }
+        }
+    } else {
+        callback();
+    }
 }
 
 /**
@@ -139,7 +159,7 @@ export function onPlayerConnecting(callback) {
  * @param {function} callback
  * @return {void}
  */
-export function onPlayerLeaving(callback) {
+export function OnPlayerLeaving(callback) {
     onPlayerLeavingCallback.push(callback);
 }
 
@@ -148,14 +168,34 @@ export function onPlayerLeaving(callback) {
  * @param {function} callback
  * @return {void}
  */
-export function onNewPlayer(callback) {
+export function OnNewPlayer(callback) {
     onNewPlayerCallback.push(callback);
+}
+
+/**
+ * @description Run new player callback
+ * @param {Player} player
+ * @param {function} callback
+ * @return {void}
+ */
+function RunNewPlayer(player, callback) {
+    const count = onNewPlayerCallback.length;
+    if (count > 0) {
+        for (let index in onNewPlayerCallback) {
+            onNewPlayerCallback[index](player);
+            if (index == count - 1) {
+                callback();
+            }
+        }
+    } else {
+        callback();
+    }
 }
 
 /**
  * @description player connecting event
  */
-AddEventHandler("playerConnecting", function(name, setKickReason, deferrals) {
+AddEventHandler("playerConnecting", function (name, setKickReason, deferrals) {
     deferrals.defer();
     deferrals.presentCard(Settings.messages.waitCard);
 
@@ -169,35 +209,34 @@ AddEventHandler("playerConnecting", function(name, setKickReason, deferrals) {
             CreatePlayerFormIdentifier(identifier, function (player) {
                 if (player === false) {
                     deferrals.done(Settings.messages.playerNotFound);
-                } else if (onNewPlayerCallback.length > 0) {
-                    for (let index in onNewPlayerCallback) {
-                        onNewPlayerCallback[index](player);
-                        if (index == onNewPlayerCallback.length -1) {
+                } else {
+                    RunPlayerConnecting(player, function () {
+                        RunNewPlayer(player, function () {
                             playersList[identifier] = player;
                             deferrals.done();
-                        }
-                    }
-                } else {
-                    playersList[identifier] = player;
-                    deferrals.done();
+                        });
+                    });
                 }
             });
         } else {
-            playersList[identifier] = player;
-            deferrals.done();
+            RunPlayerConnecting(player, function () {
+                playersList[identifier] = player;
+                deferrals.done();
+            });
         }
     });
+
 });
 
 /**
  * @description player leave event
  */
-AddEventHandler("playerDropped", function() {
+AddEventHandler("playerDropped", function () {
     if (playersList[source] !== undefined) {
         let player = playersList[source];
         for (let index in onPlayerLeavingCallback) {
             onPlayerLeavingCallback[index](player);
-            if (index == onPlayerLeavingCallback.length -1) {
+            if (index == OnPlayerLeavingCallback.length - 1) {
                 delete playersList[source];
             }
         }
@@ -212,7 +251,7 @@ AddEventHandler("playerDropped", function() {
  * @description player is ready
  */
 RegisterNetEvent("ft_player:ClientReady");
-AddEventHandler("ft_player:ClientReady", function() {
+AddEventHandler("ft_player:ClientReady", function () {
     const identifier = GetIdentifier(source);
     playersList[source] = playersList[identifier];
     delete playersList[identifier];
